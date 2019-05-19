@@ -1,4 +1,5 @@
 User neo;
+int tick = 0;
 ArrayList<Person> persons;
 ArrayList<Wall> walls;
 ArrayList<Moveable> movies;
@@ -22,6 +23,10 @@ void setup(){
 }
 void draw(){
   background(255);
+  
+  textSize(20);
+  fill(0);
+  text(""+mouseX+":"+mouseY,20,20);
   for (Moveable m: movies){
     m.move();
   }
@@ -29,6 +34,7 @@ void draw(){
     d.display();
   }
   neo.moveDis();
+  ++tick;
 }
 interface Displayable{
   void display();
