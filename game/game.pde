@@ -4,6 +4,7 @@ ArrayList<Person> persons;
 ArrayList<Wall> walls;
 ArrayList<Moveable> movies;
 ArrayList<Displayable> dis;
+ArrayList<Bullet> bullets;
 void setup(){
   size(displayWidth, displayHeight);
   neo = new User(width/2,height/2);
