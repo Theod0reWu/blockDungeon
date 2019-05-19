@@ -4,15 +4,15 @@ class User extends Person{
   boolean l = true;
   boolean r = false;
   static final float maxStep = PI/5;
-  float armAngle,armX;
+  float armAngle, mouseAngle;
   PShape graphics;
   PShape arm;
   User(float x , float y){
     super(x,y);
     ltLeg = PI/6; // PI/2 is max, 0 is min
     rtLeg = -PI/6;
-    armAngle = atan2(mouseY-y,mouseX-x);
-    armX = .4*w;
+    mouseAngle = atan2(mouseY-y,mouseX-x);
+    armAngle = 0;
     
     //make the shape
     strokeWeight(3);
@@ -20,29 +20,35 @@ class User extends Person{
     PShape head = createShape(RECT, 0,0,70,70,10,10,10,10);
     head.setFill(headC);
     graphics.addChild(head);
-    PShape eye = createShape(RECT, 70, 70/2 - 5, -70/2, 12);
+    PShape eye = createShape(RECT, 70, 70/2 - 5, -70/2 - 5, 12);
     eye.setFill(eyeC);
     eye.setStroke(0);
     graphics.addChild(eye);
     PShape body = createShape(RECT, 70/4 ,70, 35, 70,0,0,10,10);
     body.setFill(bodyC);
     graphics.addChild(body);
-    PShape arm = createShape();
+    arm = createShape();
+    arm.beginShape();
+    arm.vertex(0,0); 
+    arm.vertex(0,-12);
+    arm.vertex(64,-12);
+    arm.vertex(64, 8);
+    arm.vertex(0,8);
+    arm.endShape(CLOSE);
+    //graphics.addChild(arm); I can't add it in correctly. arm is now seperately controlled
     
     
     strokeWeight(1);
   }
   void moveDis(){
     pushMatrix();
-    if (armAngle > PI/2 || armAngle < -PI/2 && w > 0){armX = .6*w;}
-    else {armX = .4*w;}
     move();
     display();
     popMatrix();
     
   }
   void move(){
-    armAngle = atan2(mouseY-y,mouseX-x);
+    mouseAngle = atan2(mouseY-y-90,mouseX-x-35);
   };
   void walk(){//just the animation
     float i = 100; // increment
@@ -60,6 +66,13 @@ class User extends Person{
   }
   void display(){
     shape(graphics,x,y);
+    if (armAngle != mouseAngle){
+      arm.rotate(mouseAngle - armAngle);
+      armAngle = mouseAngle;
+    }
+    println(degrees(armAngle));
+    shape(arm,x+35,y+90);
+    //line(x+35,y+90,mouseX,mouseY); looks like laser pointer
   };
   String toString(){
     return "("+x+","+y+") ";
