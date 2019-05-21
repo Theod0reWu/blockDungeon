@@ -6,6 +6,6 @@ class Effect{
     initialTick = tick;
   }
   void next(int tick){//current tick
-  
+    
   }
 }

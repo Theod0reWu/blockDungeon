@@ -9,6 +9,8 @@ class User extends Person{
   PShape arm;
   Boolean facing, flip; //true = right, false = left
   Bullet bType;
+  
+  float onScreenX, onScreenY;
   User(float x , float y){
     super(x,y);
     ltLeg = PI/6; // PI/2 is max, 0 is min
@@ -45,7 +47,7 @@ class User extends Person{
     arm.endShape(CLOSE);
     //graphics.addChild(arm); I can't add it in correctly. arm is now seperately controlled
     
-    
+    onScreenX = width/2; onScreenY = height/2;
     strokeWeight(1);
   }
   void moveDis(){
@@ -56,7 +58,7 @@ class User extends Person{
     
   }
   void move(){
-    mouseAngle = atan2(mouseY-y-90,mouseX-x-35);
+    mouseAngle = atan2(mouseY-onScreenY-90,mouseX-onScreenX-35);
     if ((mouseAngle < HALF_PI && mouseAngle > -HALF_PI) &&  !facing){flip = true; facing = true;}
     else if ((mouseAngle > HALF_PI || mouseAngle < -HALF_PI) &&  facing){flip = true; facing = false;}
   };
@@ -75,6 +77,8 @@ class User extends Person{
     
   }
   void display(){
+    //float x = onScreenX; float y = onScreenY; //easier to display but might need to changed later
+    
     if(flip){
       graphics.translate(70,0);
       graphics.scale(-1,1);
