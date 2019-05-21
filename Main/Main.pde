@@ -1,5 +1,4 @@
 User neo;
-int tick = 0;
 ArrayList<Person> persons;
 ArrayList<Wall> walls;
 ArrayList<Moveable> movies;
@@ -35,7 +34,6 @@ void draw(){
     d.display();
   }
   neo.moveDis();
-  ++tick;
 }
 interface Displayable{
   void display();

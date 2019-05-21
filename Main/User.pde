@@ -56,8 +56,8 @@ class User extends Person{
   }
   void move(){
     mouseAngle = atan2(mouseY-y-90,mouseX-x-35);
-    if ((mouseAngle < HALF_PI || mouseAngle > -HALF_PI) &&  facing){flip = true;}
-    else if ((mouseAngle > HALF_PI || mouseAngle < -HALF_PI) &&  !facing){flip = true;}
+    if ((mouseAngle < HALF_PI && mouseAngle > -HALF_PI) &&  !facing){flip = true; facing = true;}
+    else if ((mouseAngle > HALF_PI || mouseAngle < -HALF_PI) &&  facing){flip = true; facing = false;}
   };
   void walk(){//just the animation
     float i = 100; // increment
@@ -75,11 +75,9 @@ class User extends Person{
   }
   void display(){
     if(flip){
-      if (facing){graphics.translate(70,0);}
-      else {graphics.translate(-70,0);}
+      graphics.translate(70,0);
       graphics.scale(-1,1);
       flip=false;
-      facing=!facing;
     }
     shape(graphics,x,y);
     if (armAngle != mouseAngle){
