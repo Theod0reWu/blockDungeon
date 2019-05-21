@@ -1,6 +1,8 @@
 void generateTerrain(){
   //border
-  
+  noStroke();
+  walls.add(new Wall(0,0,10000,50,color(200)));
+  walls.add(new Wall(0,50,50,10000,color(200)));
 }
 
 class Wall implements Displayable{
