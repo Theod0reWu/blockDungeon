@@ -26,7 +26,7 @@ void setup(){
   keys = new Boolean[]{false,false,false,false}; // [w,a,s,d]
   
   effects = new ArrayList<Effect>();
-  effects.add(new Effect(width/2,height/2,10));
+  //effects.add(new Effect(width/2,height/2,10));
   //frameRate(1000);
 }
 void draw(){
@@ -51,7 +51,7 @@ void draw(){
   }
   neo.moveDis();
   
-  if (mousePressed){effects.add(new Effect(mouseX-dx, mouseY-dy,10));}
+  //if (mousePressed){effects.add(new Effect(mouseX-dx, mouseY-dy,10));} //proper usage of dx dy on mouse
   for (Effect e:effects){
     e.display();
     if (e.particles.size() == 0){effects.remove(e); break;}

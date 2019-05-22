@@ -1,6 +1,6 @@
 void generateTerrain(){
   //border
-  int wallWidth = 50;
+  int wallWidth = 60;
   int borderLength = 10000;
   color wallColor = color(150);
   walls.add(new Wall(0,0,borderLength,wallWidth,wallColor));
