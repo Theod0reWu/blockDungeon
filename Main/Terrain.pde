@@ -1,12 +1,13 @@
 void generateTerrain(){
   //border
-  noStroke();
   int wallWidth = 50;
   int borderLength = 10000;
-  walls.add(new Wall(0,0,borderLength,wallWidth,color(200)));
-  walls.add(new Wall(0,0,wallWidth,borderLength,color(200)));
-  walls.add(new Wall(0,borderLength - wallWidth, wallWidth, borderLength, color(200)));
-  walls.add(new Wall(borderLength-wallWidth,0, wallWidth, borderLength, color(200)));
+  color wallColor = color(150);
+  walls.add(new Wall(0,0,borderLength,wallWidth,wallColor));
+  walls.add(new Wall(0,0,wallWidth,borderLength,wallColor));
+  walls.add(new Wall(0,borderLength - wallWidth, wallWidth, borderLength, wallColor));
+  walls.add(new Wall(borderLength-wallWidth,0, wallWidth, borderLength, wallColor));
+  
 }
 
 class Wall implements Displayable{
@@ -18,6 +19,8 @@ class Wall implements Displayable{
   }
   void display(){
     fill(c);
+    noStroke();
     rect(x,y,w,h);
+    stroke(0);
   }
 }

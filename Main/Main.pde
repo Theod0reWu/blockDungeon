@@ -4,7 +4,9 @@ ArrayList<Wall> walls;
 ArrayList<Moveable> movies;
 ArrayList<Displayable> dis;
 ArrayList<Bullet> bullets;
+ArrayList<Effect> effects;
 Boolean[] keys;
+float dx, dy;
 void setup(){
   size(displayWidth, displayHeight);
   neo = new User(width/2,height/2);
@@ -23,18 +25,21 @@ void setup(){
   
   keys = new Boolean[]{false,false,false,false}; // [w,a,s,d]
   
+  effects = new ArrayList<Effect>();
+  effects.add(new Effect(width/2,height/2,10));
   //frameRate(1000);
 }
 void draw(){
   background(255);
-  //keys
-  println(keys);
-   if (keys[0]){neo.y-=10;}
-   if (keys[1]){neo.x-=10;}
-   if (keys[2]){neo.y+=10;}
-   if (keys[3]){neo.x+=10;}
+  //keys  println(keys);
+  if (keys[0]){neo.y-=10;}
+  if (keys[1]){neo.x-=10;}
+  if (keys[2]){neo.y+=10;}
+  if (keys[3]){neo.x+=10;}
   
-  translate(width/2 - neo.x,height/2 - neo.y);
+  dx = width/2 - neo.x;
+  dy = height/2 - neo.y; //offset by this much (used for mouse too
+  translate(dx,dy);
   textSize(20);
   fill(0);
   text(""+mouseX+":"+mouseY,20,20);
@@ -45,6 +50,12 @@ void draw(){
     d.display();
   }
   neo.moveDis();
+  
+  if (mousePressed){effects.add(new Effect(mouseX-dx, mouseY-dy,10));}
+  for (Effect e:effects){
+    e.display();
+    if (e.particles.size() == 0){effects.remove(e); break;}
+  }
 }
 interface Displayable{
   void display();
