@@ -88,10 +88,12 @@ class User extends Person{
     shape(graphics,x,y);
     if (armAngle != mouseAngle){
       arm.rotate(mouseAngle - armAngle);
+      gun.getShape().rotate(mouseAngle-armAngle);
       armAngle = mouseAngle;
     }
     //println(degrees(armAngle));
     shape(arm,x+35,y+90);
+    shape(gun.getShape(),x+35,y+90);
     //line(x+35,y+90,mouseX,mouseY); looks like laser pointer
   };
   String toString(){
