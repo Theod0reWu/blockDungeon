@@ -4,6 +4,7 @@ abstract class Person implements Displayable, Moveable{
   float armAngle;
   color headC,bodyC, armC, legC, eyeC;
   float headSize;
+  PVector v;
   Person(float x, float y){
     this.x = x;
     this.y = y;

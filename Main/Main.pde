@@ -13,19 +13,23 @@ void setup(){
   persons = new ArrayList<Person>();
   //persons.add(neo); //user will now be seperately operated on
   
+  bullets = new ArrayList<Bullet>();
+  
   walls = new ArrayList<Wall>();
   generateTerrain();
-  
-  dis = new ArrayList<Displayable>();
-  dis.addAll(persons);
-  dis.addAll(walls); 
   
   movies = new ArrayList<Moveable>();
   movies.addAll(persons);
   
   keys = new Boolean[]{false,false,false,false}; // [w,a,s,d]
   
-  effects = new ArrayList<Effect>();
+  effects = new ArrayList<Effect>(); //always last implements seperately in the draw
+  
+  dis = new ArrayList<Displayable>();
+  dis.addAll(persons);
+  dis.addAll(walls); 
+  dis.addAll(bullets);
+  
   //effects.add(new Effect(width/2,height/2,10));
   //frameRate(1000);
 }
@@ -43,6 +47,12 @@ void draw(){
   textSize(20);
   fill(0);
   text(""+mouseX+":"+mouseY,20,20);
+  
+  for(Bullet b: bullets){
+    b.move();
+    b.display();
+  }
+  
   for (Moveable m: movies){
     m.move();
   }

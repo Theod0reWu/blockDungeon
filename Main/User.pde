@@ -8,8 +8,7 @@ class User extends Person{
   PShape graphics;
   PShape arm;
   Boolean facing, flip; //true = right, false = left
-  Bullet bType;
-  
+  Gun gun;
   float onScreenX, onScreenY;
   User(float x , float y){
     super(x,y);
@@ -40,15 +39,17 @@ class User extends Person{
     arm = createShape();
     arm.beginShape();
     arm.vertex(0,0); 
-    arm.vertex(0,-12);
-    arm.vertex(64,-12);
-    arm.vertex(64, 8);
-    arm.vertex(0,8);
+    arm.vertex(0,-10);
+    arm.vertex(64,-10);
+    arm.vertex(64, 10);
+    arm.vertex(0,10);
     arm.endShape(CLOSE);
     //graphics.addChild(arm); I can't add it in correctly. arm is now seperately controlled
     
     onScreenX = width/2; onScreenY = height/2;
     strokeWeight(1);
+    
+    gun = new Gun(x+35, y+90, 10, new PVector(0,0));
   }
   void moveDis(){
     pushMatrix();
