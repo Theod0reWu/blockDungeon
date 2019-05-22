@@ -8,12 +8,12 @@ class Effect implements Displayable{
     particles = new ArrayList<Particle>();
     initialTick = frameCount;
     
-    int numP = (int)random(5) + 5;
+    int numP = (int)random(5) + 4;
     for (int p = 0; p < numP; p++){
       float s = random(5)+5;
       float theta = random(2*PI);
-      float  nx = x+cos(theta)*mag;
-      float ny = y+sin(theta)*mag;
+      float  nx = x+cos(theta)*mag*random(1);
+      float ny = y+sin(theta)*mag*random(1);
       particles.add(new Particle(nx, ny,s, new PVector(nx - x, ny - y), color(random(50)+110)));
     }
   }
@@ -31,21 +31,21 @@ class Particle{
   int lastMove = frameCount;
   color c;
   boolean alive = true;
-  float alpha = 1; //transparency
+  float alpha = 100; //transparency
   int moves = 0;
   Particle(float x, float y, float size, PVector v, color c){
-    this.x = x; this.y = y; this.v = v.normalize().mult(random(1));
+    this.x = x; this.y = y; this.v = v.normalize().mult(random(1.8));
     this.size = size; this.c = c;
   }
   void update(){
     if (frameCount - lastMove > 1){
       x+=v.x; y+=v.y;
-      //c = color(c.red(),c.green,c.blue(),alpha); 
-      alpha-=.1;
+      c = color(red(c),green(c),blue(c),alpha); 
+      alpha-=1;
       lastMove = frameCount;
       moves++;
     }
-    if (moves > 5){alive = false;}
+    if (moves > 10){alive = false;}
   }
   void display(){
     fill(c);
