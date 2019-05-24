@@ -35,12 +35,7 @@ void setup(){
 }
 void draw(){
   background(255);
-  //keys  println(keys);
-  if (keys[0]){neo.y-=10;}
-  if (keys[1]){neo.x-=10;}
-  if (keys[2]){neo.y+=10;}
-  if (keys[3]){neo.x+=10;}
-  
+  neo.move();
   dx = width/2 - neo.x;
   dy = height/2 - neo.y; //offset by this much (used for mouse too
   translate(dx,dy);
@@ -59,8 +54,8 @@ void draw(){
   for (Displayable d: dis){
     d.display();
   }
-  neo.moveDis();
-  
+  //neo.moveDis(); for the panning thing (maybe later)
+  neo.display();
   //if (mousePressed){effects.add(new Effect(mouseX-dx, mouseY-dy,10));} //proper usage of dx dy on mouse
   for (Effect e:effects){
     e.display();
@@ -72,6 +67,10 @@ interface Displayable{
 }
 interface Moveable{
   void move();
+}
+interface Collideable{
+  boolean isTouching(Collideable other); //they will all be rectangles
+  
 }
 void keyPressed(){
   switch(key){

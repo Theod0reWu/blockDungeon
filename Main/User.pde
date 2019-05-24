@@ -10,6 +10,8 @@ class User extends Person{
   Boolean facing, flip; //true = right, false = left
   Gun gun;
   float onScreenX, onScreenY;
+  
+  PVector v = new PVector(0,0);
   User(float x , float y){
     super(x,y);
     ltLeg = PI/6; // PI/2 is max, 0 is min
@@ -62,6 +64,12 @@ class User extends Person{
     mouseAngle = atan2(mouseY-onScreenY-90,mouseX-onScreenX-35);
     if ((mouseAngle <= HALF_PI && mouseAngle >= -HALF_PI) &&  !facing){flip = true; facing = true;}
     else if ((mouseAngle > HALF_PI || mouseAngle < -HALF_PI) &&  facing){flip = true; facing = false;}
+    
+    float speed = 5;
+    if (keys[0]){neo.y-=speed;}
+    if (keys[1]){neo.x-=speed;}
+    if (keys[2]){neo.y+=speed;}
+    if (keys[3]){neo.x+=speed;}
   };
   void walk(){//just the animation
     float i = 100; // increment

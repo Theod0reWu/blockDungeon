@@ -10,7 +10,7 @@ void generateTerrain(){
   
 }
 
-class Wall implements Displayable{
+class Wall implements Displayable, Collideable{
   float x,y,w,h;
   color c;
   Wall(float x, float y, float w, float h, color c){
@@ -22,5 +22,8 @@ class Wall implements Displayable{
     noStroke();
     rect(x,y,w,h);
     stroke(0);
+  }
+  boolean isTouching(Collideable other){
+    return true;
   }
 }

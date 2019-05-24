@@ -16,7 +16,7 @@ abstract class Person implements Displayable, Moveable{
     eyeC = color(255,0,0);
     
     w = 70;
-    h = w + 1.7*w + .7*1.7*w;
+    h = 140;
     
     armAngle = 0;
     headSize = 60;
