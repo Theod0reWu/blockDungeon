@@ -30,7 +30,7 @@ class Gun{
   }
   void rotateShape(float mouseAngle){
     gunny.rotate(-angle);
-    if (mouseAngle >= HALF_PI || mouseAngle <= -HALF_PI){
+    if (mouseAngle > HALF_PI || mouseAngle < -HALF_PI){
       gunny.rotate(-mouseAngle);
       angle = -mouseAngle;
     }
