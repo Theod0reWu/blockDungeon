@@ -7,7 +7,7 @@ class Gun{
   float angle;
   Gun(float x, float y, float d, PVector v){
     this.x = x; this.y = y;
-    damage = d; velocity = v; 
+    damage = d; velocity = v; angle = 0;
     
     int armL = 50;
     int gunH = 20;
@@ -23,12 +23,21 @@ class Gun{
     gunny.endShape(CLOSE);
     gunny.setFill(0);
     stroke(0);
+    
   }
   PShape getShape(){
     return gunny;
   }
-  void rotateShape(float theta){
-    if (mouseAn
+  void rotateShape(float mouseAngle){
+    gunny.rotate(-angle);
+    if (mouseAngle >= HALF_PI || mouseAngle <= -HALF_PI){
+      gunny.rotate(-mouseAngle);
+      angle = -mouseAngle;
+    }
+    else{
+      gunny.rotate(mouseAngle);
+      angle = mouseAngle;
+    }
   }
   
   void shoot(){

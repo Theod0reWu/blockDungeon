@@ -84,9 +84,9 @@ class User extends Person{
       graphics.translate(70,0);
       graphics.scale(-1,1);
       flip=false;
-      gun.getShape().rotate(-mouseAngle);
+      gun.getShape().rotate(-gun.angle);
       gun.getShape().scale(1,-1);
-      gun.getShape().rotate(mouseAngle);
+      gun.getShape().rotate(gun.angle);
     }
     shape(graphics,x,y);
     if (armAngle != mouseAngle){
