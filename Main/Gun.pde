@@ -9,18 +9,28 @@ class Gun{
     this.x = x; this.y = y;
     damage = d; velocity = v; 
     
+    int armL = 50;
+    int gunH = 20;
     gunny = createShape();
     gunny.beginShape();
-    vertex(64, -10);
-    vertex(64 + 20, -10);
-    vertex(64 + 20, 0);
-    vertex(
-    
+    gunny.vertex(armL,0);
+    gunny.vertex(armL,-20);
+    gunny.vertex(armL+45,-20);
+    gunny.vertex(armL+45, -10);
+    gunny.vertex(armL+10,-10);
+    gunny.vertex(armL+10, 10);
+    gunny.vertex(armL,10);
+    gunny.endShape(CLOSE);
+    gunny.setFill(0);
     stroke(0);
   }
   PShape getShape(){
     return gunny;
   }
+  void rotateShape(float theta){
+    if (mouseAn
+  }
+  
   void shoot(){
     
   }
