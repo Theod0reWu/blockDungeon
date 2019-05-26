@@ -1,5 +1,6 @@
 class Bullet implements Displayable, Moveable{
   float x,y;
+  float damage;
   final PVector velocity;
   PShape bull;
   color c;
@@ -12,19 +13,24 @@ class Bullet implements Displayable, Moveable{
     bull.vertex(0,0); 
     bull.vertex(0,-5);
     bull.vertex(20,-5);
+    bull.vertex(25,0);
     bull.vertex(20, 5);
     bull.vertex(0,5);
     bull.endShape(CLOSE);
     
-    bull.rotate(atan2(velocity.x, velocity.y));
-    bull.translate(x,y);
+    bull.rotate(atan2(velocity.y, velocity.x));
+    //bull.translate(x,y);
+    bull.setFill(c);
   }
   void move(){
     x+=velocity.x;
     y+=velocity.y;
-    bull.translate(velocity.x, velocity.y);
+    //bull.translate(velocity.x, velocity.y);
   };
   void display(){
+    pushMatrix();
+    translate(x,y);
     shape(bull);
+    popMatrix();
   };
 }
