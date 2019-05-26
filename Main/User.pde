@@ -110,7 +110,8 @@ class User extends Person{
   String toString(){
     return "("+x+","+y+") ";
   }
+  float lastShot = frameCount;
   void shoot(){
-    
+    gun.shoot(x+35,y+90);
   }
 }

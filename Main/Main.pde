@@ -28,10 +28,12 @@ void setup(){
   dis = new ArrayList<Displayable>();
   dis.addAll(persons);
   dis.addAll(walls); 
-  dis.addAll(bullets);
+  //dis.addAll(bullets);
   
   //effects.add(new Effect(width/2,height/2,10));
   //frameRate(1000);
+  
+  //bullets.add(new Bullet (neo.x,neo.y, new PVector(1,1)));
 }
 void draw(){
   background(255);
@@ -104,4 +106,7 @@ void keyReleased(){
    keys[3] = false;
    break;
   }
+}
+void mousePressed(){
+  neo.shoot();
 }
