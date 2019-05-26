@@ -10,12 +10,12 @@ class Gun{
     damage = d; velocity = v; angle = 0;
     
     int armL = 50;
-    int gunH = 20;
+    int gunH = 22;
     gunny = createShape();
     gunny.beginShape();
     gunny.vertex(armL,0);
-    gunny.vertex(armL,-20);
-    gunny.vertex(armL+45,-20);
+    gunny.vertex(armL,-gunH);
+    gunny.vertex(armL+45,-gunH);
     gunny.vertex(armL+45, -10);
     gunny.vertex(armL+10,-10);
     gunny.vertex(armL+10, 10);
@@ -40,7 +40,16 @@ class Gun{
     }
   }
   
-  void shoot(){
-    
+  void shoot(float x, float y){
+    PVector bv = new PVector(cos(angle)*10, sin(angle)*10);
+    if (angle > HALF_PI || angle < -HALF_PI){
+      bv = new PVector(cos(-angle)*10, sin(-angle)*10);
+    }
+    Bullet b = new Bullet(x,y,bv);
+    println(angle);
+    bullets.add(b);
   }
+}
+enum GunTypes{
+  
 }
