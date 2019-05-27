@@ -1,5 +1,5 @@
 class Cartridge implements Displayable{
- final float x, y, angle;
+ float x, y, angle;
  final PShape shell;
  final color c;
  float a = 200;
@@ -11,6 +11,7 @@ class Cartridge implements Displayable{
    //println("c:" + x+":"+y);
    this.angle = angle;
    frame = frameCount;
+   this.v = v;
    
    c = color(250,208,56,a);
    
@@ -28,6 +29,7 @@ class Cartridge implements Displayable{
    //shell.translate(x,y);
  }
  void display(){
+   x+=v.x; y+=v.y;
    if (frameCount - frame > 10){a-=10; frame = frameCount;}
    if (a <= 0){dead = true;}
    shell.setFill(color(red(c),green(c),blue(c),a));

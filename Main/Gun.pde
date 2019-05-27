@@ -68,7 +68,7 @@ class Gun{
     //println("o: "+b.x+":"+ b.y);
     //println("b: "+b.getX()+":"+ b.getY());
     //special effects
-    cartridges.add(new Cartridge(x+gunFactorX, y-gunFactorY, bv.heading(), new PVector(sin(angle+HALF_PI), cos(angle+HALF_PI))));
+    cartridges.add(new Cartridge(x+gunFactorX, y-gunFactorY, bv.heading(), new PVector(cos(angle-HALF_PI),sin(angle-HALF_PI))));
   }
 }
 enum GunTypes{
