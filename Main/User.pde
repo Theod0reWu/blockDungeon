@@ -112,7 +112,7 @@ class User extends Person{
   }
   float lastShot = frameCount;
   void shoot(){
-    if (frameCount - lastShot > 5){
+    if (frameCount - lastShot > 6){
       gun.shoot(x+35,y+90);
       lastShot = frameCount;
     }

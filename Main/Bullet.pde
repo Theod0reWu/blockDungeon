@@ -86,7 +86,8 @@ class Bullet implements Displayable, Moveable, Collideable{
       if (getX() < other.getX()){
         //println("1");
         d = ptl(getX(), getY(), 1, 0, -other.getX());
-      }else { d = ptl(getX(), getY(), 1, 0, -other.getX()-other.getW());}
+      }else if (getX() > other.getX() + other.getW()) { d = ptl(getX(), getY(), 1, 0, -other.getX()-other.getW());}
+      else{ d= 0;}
     }else if (getX() >= other.getX() && getX() <= other.getX() + other.getW()){
       if (getY() < other.getY()){
         //println("3");
