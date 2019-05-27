@@ -6,10 +6,11 @@ SoundFile whiz;
 User neo;
 ArrayList<Person> persons;
 ArrayList<Wall> walls;
-ArrayList<Moveable> movies;
-ArrayList<Displayable> dis;
+//ArrayList<Moveable> movies;
+//ArrayList<Displayable> dis;
 ArrayList<Bullet> bullets;
 ArrayList<Effect> effects;
+ArrayList<Cartridge> cartridges;
 Boolean[] keys;
 float dx, dy;
 void setup(){
@@ -17,7 +18,7 @@ void setup(){
   shot = new SoundFile(this, "sounds\\sound-Gunshot.mp3");
   shot = new SoundFile(this, "sounds\\sound-Gunshot.mp3");
   whiz = new SoundFile(this, "sounds\\sound-BulletWhizzing.mp3");
-  frameRate(1000);
+  //frameRate(1000);
   size(displayWidth, displayHeight);
   neo = new User(width/2,height/2);
   persons = new ArrayList<Person>();
@@ -28,16 +29,18 @@ void setup(){
   walls = new ArrayList<Wall>();
   generateTerrain();
   
-  movies = new ArrayList<Moveable>();
-  movies.addAll(persons);
+  //movies = new ArrayList<Moveable>();
+  //movies.addAll(persons);
   
   keys = new Boolean[]{false,false,false,false}; // [w,a,s,d]
   
   effects = new ArrayList<Effect>(); //always last implements seperately in the draw
   
-  dis = new ArrayList<Displayable>();
-  dis.addAll(persons);
-  dis.addAll(walls); 
+  //dis = new ArrayList<Displayable>();
+  //dis.addAll(persons);
+  //dis.addAll(walls); 
+  
+  cartridges = new ArrayList<Cartridge>(); 
   //dis.addAll(bullets);
   
   //effects.add(new Effect(width/2,height/2,10));
@@ -53,8 +56,11 @@ void draw(){
   translate(dx,dy);
   textSize(20);
   fill(0);
-  //text(""+mouseX+":"+mouseY,20,20);
   neo.shoot(); //machine gun
+  for (Cartridge c : cartridges){
+    c.display();
+    if (c.dead){cartridges.remove(c); break;}
+  }
   for(Bullet b: bullets){
     boolean dead = false;
     for (Wall w: walls){
@@ -71,13 +77,15 @@ void draw(){
     b.move();
     b.display();
   }
-  
-  for (Moveable m: movies){
-    m.move();
+  for (Wall w: walls){
+    w.display();
   }
-  for (Displayable d: dis){
-    d.display();
-  }
+  //for (Moveable m: movies){
+    //m.move();
+  //}
+  //for (Displayable d: dis){
+    //d.display();
+  //}
   //neo.moveDis(); for the panning thing (maybe later)
   neo.display();
   //if (mousePressed){effects.add(new Effect(mouseX-dx, mouseY-dy,10));} //proper usage of dx dy on mouse

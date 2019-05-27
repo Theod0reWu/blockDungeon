@@ -9,6 +9,7 @@ class Bullet implements Displayable, Moveable, Collideable{
   boolean good; //sees if bullets is enemy bullet or player bullet
   Bullet(float x, float y, PVector v, boolean good){
     this.x = x; this.y = y; //midpoint of side nearest to the player
+    //println("b:" + x+":"+y);
     velocity = v;
     w = 20; 
     h = 10;
@@ -41,45 +42,10 @@ class Bullet implements Displayable, Moveable, Collideable{
     shape(bull);
     popMatrix();
   };
-  /* //exact intersection only need some circles for bullets
-  float getX(){
-    float angle = HALF_PI - this.angle;
-    return x - h/2.0*cos(angle);
-  }
-  float getY(){
-    float angle = HALF_PI - this.angle;
-    return y - h/2.0*sin(angle);
-  }
-  boolean isTouching(Collideable other){
-    float a = other.getAngle();
-    //these represent points
-    PVector r1 = new PVector(other.getX(), other.getY());
-    PVector r2 = new PVector(r1.x + w*cos(a), r1.y + y+sin(a));
-    PVector r3 = new PVector(r2.x + other.getH()/2*cos(a-HALF_PI), r2.y + other.getH()/2*sin(a-HALF_PI));
-    PVector r4 = new PVector(r1.x + other.getH()/2*cos(a-HALF_PI), r1.y + other.getH()/2*sin(a-HALF_PI));
-    
-    return false;
-  }
-  float getX(){
-    float angle = HALF_PI - this.angle;
-    return x - h/2.0*cos(angle);
-  }
-  float getY(){
-    float angle = HALF_PI - this.angle;
-    return y - h/2.0*sin(angle);
-  }
-  float getAngle(){
-    return angle;
-  }
-  */
   float getW(){return w;} 
   float getH(){return h;}
-  float getX(){
-    return x + w/2*cos(angle);
-  }
-  float getY(){
-    return y + w/2*sin(angle);
-  }
+  float getX(){return x + w/2*cos(angle);}
+  float getY(){return y + w/2*sin(angle);}
   boolean isTouching(Collideable other){ //slight breakage at shooting the corners
     float d = sqrt(sq(h)+sq(w));
     if (getY() >= other.getY() && getY() <= other.getY() + other.getH()){

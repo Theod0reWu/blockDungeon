@@ -1,15 +1,18 @@
+String[][] map;
 void generateTerrain(){
   //border
   int wallWidth = 100;
   int borderLength = 7000;
-  color wallColor = color(150);
+  color wallColor = color(100);
   walls.add(new Wall(0,0,borderLength,wallWidth,wallColor));
   walls.add(new Wall(0,0,wallWidth,borderLength,wallColor));
   walls.add(new Wall(borderLength-wallWidth,0, wallWidth,borderLength,wallColor));
   walls.add(new Wall(0,borderLength - wallWidth, borderLength,wallWidth, wallColor));
   
 }
-
+void placeBackground(){ //colorful tile background thingy
+  
+}
 class Wall implements Displayable, Collideable{
   float x,y,w,h; //top left corner
   color c;

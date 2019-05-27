@@ -152,6 +152,7 @@ class User extends Person{
     if (frameCount - lastShot > gun.fireRate && mousePressed){
       gun.shoot(x+35,y+90);
       lastShot = frameCount;
+      //sound effects
       shot.play();
       if (shellDropping.isPlaying()){shellDropping.pause();}
       first = true;
