@@ -5,12 +5,20 @@ class Gun{
   PVector velocity;
   Bullet bType;
   float angle;
-  Gun(float x, float y, float d, PVector v){
+  float fireRate;
+  
+  float gunFactorX;
+  float gunFactorY;
+  
+  int armL;
+  int gunH;
+  Gun(float x, float y, float d, PVector v, float fr){
     this.x = x; this.y = y;
     damage = d; velocity = v; angle = 0;
+    fireRate = fr;
     
-    int armL = 50;
-    int gunH = 22;
+    armL = 50;
+    gunH = 22;
     gunny = createShape();
     gunny.beginShape();
     gunny.vertex(armL,0);
@@ -23,7 +31,6 @@ class Gun{
     gunny.endShape(CLOSE);
     gunny.setFill(0);
     stroke(0);
-    
   }
   PShape getShape(){
     return gunny;
@@ -41,12 +48,21 @@ class Gun{
   }
   
   void shoot(float x, float y){
+    float a = angle;
+    float m = pyth(gunH-5,armL);
+    gunFactorX = armL*cos(a)+(gunH-5)*cos(a-HALF_PI);
+    gunFactorY = armL*sin(a)+(gunH-5)*sin(a-HALF_PI);
+    if (a < HALF_PI && a > -HALF_PI){
+      gunFactorX = armL*cos(a)+(gunH-5)*cos(a-HALF_PI);
+      gunFactorY = armL*sin(a)+(gunH-5)*sin(a-HALF_PI);
+    }
+    println(degrees(a));
     float speed = 25; // cannot be higher than wall thickness
     PVector bv = new PVector(cos(angle)*speed, sin(angle)*speed);
     if (angle > HALF_PI || angle < -HALF_PI){
       bv = new PVector(cos(-angle)*speed, sin(-angle)*speed);
     }
-    Bullet b = new Bullet(x,y,bv,true);
+    Bullet b = new Bullet(x+gunFactorX,y-gunFactorY,bv,true);
     //println(angle);
     bullets.add(b);
     //println("o: "+b.x+":"+ b.y);

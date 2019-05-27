@@ -8,7 +8,7 @@ class Effect implements Displayable{
     particles = new ArrayList<Particle>();
     initialTick = frameCount;
     
-    int numP = (int)random(5) + 4;
+    int numP = (int)random(5) + 5;
     for (int p = 0; p < numP; p++){
       float s = random(5)+5;
       float theta = random(2*PI);

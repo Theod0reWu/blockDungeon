@@ -1,3 +1,8 @@
+import processing.sound.*;
+SoundFile shellDropping;
+SoundFile shot;
+SoundFile whiz;
+
 User neo;
 ArrayList<Person> persons;
 ArrayList<Wall> walls;
@@ -8,6 +13,10 @@ ArrayList<Effect> effects;
 Boolean[] keys;
 float dx, dy;
 void setup(){
+  shellDropping = new SoundFile(this, "sounds\\sound-ShellFalling.wav");
+  shot = new SoundFile(this, "sounds\\sound-Gunshot.mp3");
+  shot = new SoundFile(this, "sounds\\sound-Gunshot.mp3");
+  whiz = new SoundFile(this, "sounds\\sound-BulletWhizzing.mp3");
   frameRate(1000);
   size(displayWidth, displayHeight);
   neo = new User(width/2,height/2);
@@ -44,8 +53,8 @@ void draw(){
   translate(dx,dy);
   textSize(20);
   fill(0);
-  text(""+mouseX+":"+mouseY,20,20);
-  //neo.shoot(); machine gun
+  //text(""+mouseX+":"+mouseY,20,20);
+  neo.shoot(); //machine gun
   for(Bullet b: bullets){
     boolean dead = false;
     for (Wall w: walls){
@@ -55,6 +64,7 @@ void draw(){
       b.velocity.normalize();
       int factor = 15;
       effects.add(new Effect(b.x+b.velocity.x*15,b.y+b.velocity.y*15,10, color(150)));
+      //whiz.play();
       bullets.remove(b);
       break;
     }
@@ -129,5 +139,8 @@ void keyReleased(){
   }
 }
 void mousePressed(){
-  neo.shoot();
+  //neo.shoot();
+}
+float pyth(float a, float b){
+  return sqrt(sq(a)+sq(b));
 }

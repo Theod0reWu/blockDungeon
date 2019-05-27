@@ -51,7 +51,7 @@ class User extends Person{
     onScreenX = width/2; onScreenY = height/2;
     strokeWeight(1);
     
-    gun = new Gun(x+35, y+90, 10, new PVector(0,0));
+    gun = new Gun(x+35, y+90, 10, new PVector(0,0), 50);
   }
   void moveDis(){
     pushMatrix();
@@ -111,10 +111,17 @@ class User extends Person{
     return "("+x+","+y+") ";
   }
   float lastShot = frameCount;
+  boolean first = false;
   void shoot(){
-    if (frameCount - lastShot > 6){
+    if (frameCount - lastShot > gun.fireRate && mousePressed){
       gun.shoot(x+35,y+90);
       lastShot = frameCount;
+      shot.play();
+      shellDropping.pause();
+      first = true;
+    }
+    if (frameCount - lastShot > gun.fireRate*2 / 3 &&  frameCount - lastShot < gun.fireRate*2/3 + 2 && first){
+      shellDropping.play();
     }
   }
 }
