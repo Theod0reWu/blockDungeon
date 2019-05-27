@@ -3,7 +3,7 @@ class Effect implements Displayable{
   PVector v;
   int initialTick;
   ArrayList<Particle> particles;
-  Effect(float x, float y, float mag){
+  Effect(float x, float y, float mag, color c){
     this.mag = mag; this.x = x; this.y = y;
     particles = new ArrayList<Particle>();
     initialTick = frameCount;
@@ -14,7 +14,8 @@ class Effect implements Displayable{
       float theta = random(2*PI);
       float  nx = x+cos(theta)*mag*random(1);
       float ny = y+sin(theta)*mag*random(1);
-      particles.add(new Particle(nx, ny,s, new PVector(nx - x, ny - y), color(random(50)+110)));
+      color randC = color(red(c)+random(20),green(c)+random(20),blue(c)+random(20));
+      particles.add(new Particle(nx, ny,s, new PVector(nx - x, ny - y), randC));
     }
   }
   void display(){

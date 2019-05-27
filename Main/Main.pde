@@ -45,7 +45,7 @@ void draw(){
   textSize(20);
   fill(0);
   text(""+mouseX+":"+mouseY,20,20);
-  
+  //neo.shoot(); machine gun
   for(Bullet b: bullets){
     boolean dead = false;
     for (Wall w: walls){
@@ -54,7 +54,7 @@ void draw(){
     if (dead){
       b.velocity.normalize();
       int factor = 15;
-      effects.add(new Effect(b.x+b.velocity.x*15,b.y+b.velocity.y*15,10));
+      effects.add(new Effect(b.x+b.velocity.x*15,b.y+b.velocity.y*15,10, color(150)));
       bullets.remove(b);
       break;
     }

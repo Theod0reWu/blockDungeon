@@ -41,7 +41,7 @@ class Gun{
   }
   
   void shoot(float x, float y){
-    float speed = 25;
+    float speed = 25; // cannot be higher than wall thickness
     PVector bv = new PVector(cos(angle)*speed, sin(angle)*speed);
     if (angle > HALF_PI || angle < -HALF_PI){
       bv = new PVector(cos(-angle)*speed, sin(-angle)*speed);

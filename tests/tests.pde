@@ -3,19 +3,17 @@ PShape group;
 void setup() {
   size(1000,1000);
   // Make a group PShape
-    PShape gunny = createShape();
-    gunny.beginShape();
-    gunny.vertex(0,0);
-    gunny.vertex(0,-10);
-    gunny.vertex(30,-10);
-    gunny.vertex(30, 0);
-    gunny.vertex(10,0);
-    gunny.vertex(10, 10);
-    gunny.vertex(0,10);
-    gunny.endShape(CLOSE);
-    group = gunny;
-    group.scale(1,-1);
-    group.rotate(3*PI/4);
+    PShape bull = createShape();
+    bull.beginShape();
+    bull.vertex(0,0); 
+    bull.vertex(0,-5);
+    bull.vertex(20,-5);
+    bull.vertex(20, 5);
+    bull.vertex(0,5);
+    bull.endShape(CLOSE);
+    group = bull;
+    //group.scale(1,-1);
+    //group.rotate(3*PI/4);
 }
 
 void draw() {
