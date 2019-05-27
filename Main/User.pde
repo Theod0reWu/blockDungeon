@@ -3,7 +3,7 @@ class User extends Person{
   float rtLeg = 0; // rotates <= 0
   boolean l = true;
   boolean r = false;
-  static final float maxStep = PI/5;
+  static final float maxStep = PI/6;
   float armAngle, mouseAngle;
   PShape graphics;
   PShape arm;
@@ -65,28 +65,34 @@ class User extends Person{
     if ((mouseAngle <= HALF_PI && mouseAngle >= -HALF_PI) &&  !facing){flip = true; facing = true;}
     else if ((mouseAngle > HALF_PI || mouseAngle < -HALF_PI) &&  facing){flip = true; facing = false;}
     
+    float ox = x; float oy = y; //original x and y
     float speed = 5;
     if (keys[0]){neo.y-=speed;}
     if (keys[1]){neo.x-=speed;}
     if (keys[2]){neo.y+=speed;}
     if (keys[3]){neo.x+=speed;}
+    if (ox != x || oy != y){walk();}
   };
   void walk(){//just the animation
     float i = 100; // increment
     
     if (ltLeg >= maxStep){l =true;}
-    else if (ltLeg <= -maxStep){l = false;}
+    else if (ltLeg <= -.1){l = false;}
     if (l){ltLeg-=PI/i;}
     else{ltLeg+=PI/i;}
     
-    if (rtLeg >= maxStep){r =true;}
+    if (rtLeg >= .1){r =true;}
     else if (rtLeg <= -maxStep){r = false;}
     if (r){rtLeg-=PI/i;}
     else{rtLeg+=PI/i;}
-    
   }
   void display(){
     //float x = onScreenX; float y = onScreenY; //easier to display but might need to changed later
+    fill(255);
+    strokeWeight(3);
+    aRect(x+35+5,y+140-5,20,60,rtLeg);
+    aRect(x+35-5,y+140-5,20,60,ltLeg);
+    strokeWeight(1);
     
     if(flip){
       graphics.translate(70,0);
@@ -105,7 +111,7 @@ class User extends Person{
     //println(degrees(armAngle));
     shape(arm,x+35,y+90);
     shape(gun.getShape(),x+35,y+90);
-    //line(x+35,y+90,mouseX,mouseY); looks like laser pointer
+    //line(x+35,y+90,mouseX,mouseY); //looks like laser pointer
   };
   String toString(){
     return "("+x+","+y+") ";
@@ -124,4 +130,12 @@ class User extends Person{
       shellDropping.play();
     }
   }
+}
+
+void aRect(float x, float y, float w, float h, float theta){ //theta is the angle from the veritcal, (x,y) is the middle of the upper width  
+   pushMatrix();
+   translate(x,y);
+   rotate(theta);
+   rect(-.5*w,0,w,h,10,10,10,10);
+   popMatrix();
 }
