@@ -54,9 +54,9 @@ class Gun{
     gunFactorY = armL*sin(a)+(gunH-5)*sin(a-HALF_PI);
     if (a < HALF_PI && a > -HALF_PI){
       gunFactorX = armL*cos(a)+(gunH-5)*cos(a-HALF_PI);
-      gunFactorY = armL*sin(a)+(gunH-5)*sin(a-HALF_PI);
+      gunFactorY = -1*(armL*sin(a)+(gunH-5)*sin(a-HALF_PI));
     }
-    println(degrees(a));
+    //println(degrees(a));
     float speed = 25; // cannot be higher than wall thickness
     PVector bv = new PVector(cos(angle)*speed, sin(angle)*speed);
     if (angle > HALF_PI || angle < -HALF_PI){
