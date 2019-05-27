@@ -67,10 +67,40 @@ class User extends Person{
     
     float ox = x; float oy = y; //original x and y
     float speed = 5;
-    if (keys[0]){neo.y-=speed;}
-    if (keys[1]){neo.x-=speed;}
-    if (keys[2]){neo.y+=speed;}
-    if (keys[3]){neo.x+=speed;}
+    for (Wall w : walls){
+      if (isTouching(w)){
+        //println("wall!!!"+frameCount);
+      }
+    }
+    //there might be faster way to detect walls while moving, but whatever
+    if (keys[0]){
+      boolean go = true;
+      for (Wall w : walls){
+        if (willTouch(w,0,-speed)){go = false; break;}
+      }
+      if (go) {neo.y-=speed;}
+    }
+    if (keys[1]){
+      boolean go = true;
+      for (Wall w : walls){
+        if (willTouch(w,-speed,0)){go = false; break;}
+      }
+      if (go) {neo.x-=speed;}
+    }
+    if (keys[2]){
+      boolean go = true;
+      for (Wall w : walls){
+        if (willTouch(w,0,speed)){go = false; break;}
+      }
+      if (go) {neo.y+=speed;}
+    }
+    if (keys[3]){
+      boolean go = true;
+      for (Wall w : walls){
+        if (willTouch(w,speed,0)){go = false; break;}
+      }
+      if (go) {neo.x+=speed;}
+    }
     if (ox != x || oy != y){walk();}
   };
   void walk(){//just the animation
@@ -136,6 +166,6 @@ void aRect(float x, float y, float w, float h, float theta){ //theta is the angl
    pushMatrix();
    translate(x,y);
    rotate(theta);
-   rect(-.5*w,0,w,h,10,10,10,10);
+   rect(-.5*w,0,w,h,10,10,0,0);
    popMatrix();
 }
