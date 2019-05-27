@@ -80,19 +80,21 @@ class Bullet implements Displayable, Moveable, Collideable{
   float getY(){
     return y + w/2*sin(angle);
   }
-  boolean isTouching(Collideable other){
+  boolean isTouching(Collideable other){ //slight breakage at shooting the corners
     float d = sqrt(sq(h)+sq(w));
-    if (getY() > other.getY() && getY() < other.getY() + other.getH()){
+    if (getY() >= other.getY() && getY() <= other.getY() + other.getH()){
       if (getX() < other.getX()){
+        //println("1");
         d = ptl(getX(), getY(), 1, 0, -other.getX());
       }else { d = ptl(getX(), getY(), 1, 0, -other.getX()-other.getW());}
-    }else if (getX() > other.getX() && getX() < other.getX() + other.getW()){
-      if (getY() > other.getY()){
+    }else if (getX() >= other.getX() && getX() <= other.getX() + other.getW()){
+      if (getY() < other.getY()){
+        //println("3");
         d = ptl(getX(), getY(), 0, 1, -other.getY());
-      } else { d = ptl(getX(), getY(), 0, 1, -other.getY()-other.getH());}
+      } else { d = ptl(getX(), getY(), 0, 1, -other.getY()-other.getH()); }
     }
     //println(d);
-    return d < sqrt(sq(h)+sq(w)) - 18;
+    return d < sqrt(sq(h)+sq(w));
   }
 }
 float ptl(float px, float py, float a, float b, float c){ //point to line distance

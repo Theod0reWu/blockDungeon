@@ -52,7 +52,9 @@ void draw(){
       if (b.isTouching(w)){dead = true;break;}
     }
     if (dead){
-      effects.add(new Effect(b.x,b.y,10));
+      b.velocity.normalize();
+      int factor = 15;
+      effects.add(new Effect(b.x+b.velocity.x*15,b.y+b.velocity.y*15,10));
       bullets.remove(b);
       break;
     }

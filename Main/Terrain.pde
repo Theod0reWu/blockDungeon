@@ -1,12 +1,12 @@
 void generateTerrain(){
   //border
   int wallWidth = 80;
-  int borderLength = 10000;
+  int borderLength = 5000;
   color wallColor = color(150);
   walls.add(new Wall(0,0,borderLength,wallWidth,wallColor));
   walls.add(new Wall(0,0,wallWidth,borderLength,wallColor));
-  walls.add(new Wall(0,borderLength - wallWidth, wallWidth, borderLength, wallColor));
-  walls.add(new Wall(borderLength-wallWidth,0, wallWidth, borderLength, wallColor));
+  walls.add(new Wall(borderLength-wallWidth,0, wallWidth,borderLength,wallColor));
+  walls.add(new Wall(0,borderLength - wallWidth, borderLength,wallWidth, wallColor));
   
 }
 
