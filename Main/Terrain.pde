@@ -1,6 +1,6 @@
 void generateTerrain(){
   //border
-  int wallWidth = 60;
+  int wallWidth = 80;
   int borderLength = 10000;
   color wallColor = color(150);
   walls.add(new Wall(0,0,borderLength,wallWidth,wallColor));
@@ -11,7 +11,7 @@ void generateTerrain(){
 }
 
 class Wall implements Displayable, Collideable{
-  float x,y,w,h;
+  float x,y,w,h; //top left corner
   color c;
   Wall(float x, float y, float w, float h, color c){
     this.x = x; this.y = y; this.w = w; this.h = h;
@@ -26,4 +26,9 @@ class Wall implements Displayable, Collideable{
   boolean isTouching(Collideable other){
     return true;
   }
+  float getX(){return x;}
+  float getY(){return y;}
+  float getW(){return w;}
+  float getH(){return h;}
+  float getAngle(){return 0;}
 }

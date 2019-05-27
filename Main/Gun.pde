@@ -41,13 +41,16 @@ class Gun{
   }
   
   void shoot(float x, float y){
-    PVector bv = new PVector(cos(angle)*10, sin(angle)*10);
+    float speed = 20;
+    PVector bv = new PVector(cos(angle)*speed, sin(angle)*speed);
     if (angle > HALF_PI || angle < -HALF_PI){
-      bv = new PVector(cos(-angle)*10, sin(-angle)*10);
+      bv = new PVector(cos(-angle)*speed, sin(-angle)*speed);
     }
-    Bullet b = new Bullet(x,y,bv);
-    println(angle);
+    Bullet b = new Bullet(x,y,bv,true);
+    //println(angle);
     bullets.add(b);
+    //println("o: "+b.x+":"+ b.y);
+    //println("b: "+b.getX()+":"+ b.getY());
   }
 }
 enum GunTypes{

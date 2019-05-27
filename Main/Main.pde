@@ -8,6 +8,7 @@ ArrayList<Effect> effects;
 Boolean[] keys;
 float dx, dy;
 void setup(){
+  frameRate(1000);
   size(displayWidth, displayHeight);
   neo = new User(width/2,height/2);
   persons = new ArrayList<Person>();
@@ -46,6 +47,15 @@ void draw(){
   text(""+mouseX+":"+mouseY,20,20);
   
   for(Bullet b: bullets){
+    boolean dead = false;
+    for (Wall w: walls){
+      if (b.isTouching(w)){dead = true;break;}
+    }
+    if (dead){
+      effects.add(new Effect(b.x,b.y,10));
+      bullets.remove(b);
+      break;
+    }
     b.move();
     b.display();
   }
@@ -70,9 +80,18 @@ interface Displayable{
 interface Moveable{
   void move();
 }
-interface Collideable{
+interface Collideable{ //must have h for height and w for width
   boolean isTouching(Collideable other); //they will all be rectangles
+  float getX(); //top left corner 
+  float getY();
+  //float getAngle(); //gets the angle it is rotated by (for bullets mainly);
+  float getH();float getW();
   
+  /*possible collisons NO Master Collideable List!!!!!
+  1. bullet hits wall (bullet checks and explodes manually)
+  2. bullet hits person (same as above)
+  3. person hits wall (person will have to check
+  */
 }
 void keyPressed(){
   switch(key){
