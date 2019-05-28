@@ -49,12 +49,13 @@ class Gun{
   
   void shoot(float x, float y){
     float a = angle;
-    float m = pyth(gunH-5,armL);
+    float cartAngle = angle - HALF_PI;
     gunFactorX = armL*cos(a)+(gunH-5)*cos(a-HALF_PI);
     gunFactorY = armL*sin(a)+(gunH-5)*sin(a-HALF_PI);
-    if (a < HALF_PI && a > -HALF_PI){
+    if (a <= HALF_PI && a >= -HALF_PI){
       gunFactorX = armL*cos(a)+(gunH-5)*cos(a-HALF_PI);
       gunFactorY = -1*(armL*sin(a)+(gunH-5)*sin(a-HALF_PI));
+      cartAngle = angle + HALF_PI;
     }
     //println(degrees(a));
     float speed = 28; // cannot be higher than wall thickness
@@ -68,7 +69,7 @@ class Gun{
     //println("o: "+b.x+":"+ b.y);
     //println("b: "+b.getX()+":"+ b.getY());
     //special effects
-    cartridges.add(new Cartridge(x+gunFactorX, y-gunFactorY, bv.heading(), new PVector(cos(angle-HALF_PI),sin(angle-HALF_PI))));
+    cartridges.add(new Cartridge(x+gunFactorX, y-gunFactorY, bv.heading(), new PVector(cos(cartAngle),sin(cartAngle))));
   }
 }
 enum GunTypes{

@@ -14,10 +14,10 @@ ArrayList<Cartridge> cartridges;
 Boolean[] keys;
 float dx, dy;
 void setup(){
-  shellDropping = new SoundFile(this, "sounds\\sound-ShellFalling.wav");
-  shot = new SoundFile(this, "sounds\\sound-Gunshot.mp3");
-  shot = new SoundFile(this, "sounds\\sound-Gunshot.mp3");
-  whiz = new SoundFile(this, "sounds\\sound-BulletWhizzing.mp3");
+  shellDropping = new SoundFile(this, "sound-ShellFalling.wav");
+  shot = new SoundFile(this, "sound-Gunshot.wav");
+  //shot = new SoundFile(this, "sounds\\sound-Gunshot.mp3");
+  //whiz = new SoundFile(this, "sounds\\sound-BulletWhizzing.mp3");
   //frameRate(1000);
   size(displayWidth, displayHeight);
   neo = new User(width/2,height/2);

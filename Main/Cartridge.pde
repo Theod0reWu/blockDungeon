@@ -30,6 +30,7 @@ class Cartridge implements Displayable{
  }
  void display(){
    x+=v.x; y+=v.y;
+   //shell.rotate(random(.2)-.1);
    if (frameCount - frame > 10){a-=10; frame = frameCount;}
    if (a <= 0){dead = true;}
    shell.setFill(color(red(c),green(c),blue(c),a));
@@ -37,5 +38,8 @@ class Cartridge implements Displayable{
    translate(x,y);
    shape(shell);
    popMatrix();
+ }
+ void specialRotate(float theta){
+   
  }
 }
