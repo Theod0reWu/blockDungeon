@@ -51,7 +51,7 @@ class User extends Person{
     onScreenX = width/2; onScreenY = height/2;
     strokeWeight(1);
     
-    gun = new Gun(x+35, y+90, 10, new PVector(0,0), 50);
+    gun = new Gun(x+35, y+90, 10, new PVector(0,0), 10);
   }
   void moveDis(){
     pushMatrix();

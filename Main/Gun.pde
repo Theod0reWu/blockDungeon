@@ -5,7 +5,7 @@ class Gun{
   PVector velocity;
   Bullet bType;
   float angle;
-  float fireRate;
+  float fireRate; //inverse higher num, lower actual rate
   
   float gunFactorX;
   float gunFactorY;
@@ -69,7 +69,7 @@ class Gun{
     //println("o: "+b.x+":"+ b.y);
     //println("b: "+b.getX()+":"+ b.getY());
     //special effects
-    cartridges.add(new Cartridge(x+gunFactorX, y-gunFactorY, bv.heading(), new PVector(cos(cartAngle),sin(cartAngle))));
+    cartridges.add(new Cartridge(x+gunFactorX+random(15)-7, y-gunFactorY, bv.heading(), new PVector(0,5)));
   }
 }
 enum GunTypes{

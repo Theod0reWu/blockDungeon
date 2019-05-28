@@ -6,13 +6,15 @@ class Cartridge implements Displayable{
  int frame;
  PVector v;
  boolean dead = false;
+ int d = (int)random(2) - 1;
+ int dist = 0;
  Cartridge(float x, float y, float angle, PVector v){//make up fly up and rotate a little at every move
    this.x = x; this.y = y;
    //println("c:" + x+":"+y);
    this.angle = angle;
    frame = frameCount;
    this.v = v;
-   
+   if (d == 0){d = 1;}
    c = color(250,208,56,a);
    
    noStroke();
@@ -29,17 +31,19 @@ class Cartridge implements Displayable{
    //shell.translate(x,y);
  }
  void display(){
-   x+=v.x; y+=v.y;
-   //shell.rotate(random(.2)-.1);
+   x+=v.x; y+=v.y; dist+=v.y;
+   centerRotate(d*random(.2));
    if (frameCount - frame > 10){a-=10; frame = frameCount;}
-   if (a <= 0){dead = true;}
+   if (a <= 0 || dist >= 180){dead = true;}
    shell.setFill(color(red(c),green(c),blue(c),a));
    pushMatrix();
    translate(x,y);
    shape(shell);
    popMatrix();
  }
- void specialRotate(float theta){
-   
+ void centerRotate(float theta){
+   shell.translate(10,0);
+   shell.rotate(theta);
+   shell.translate(-10,0);
  }
 }
