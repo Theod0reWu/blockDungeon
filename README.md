@@ -11,7 +11,8 @@
 <br> 5/23/19: continued working on gun (bug present). </br>
 <br> 5/24/19: gun fixed, moving on to collision detection. </br>
 <br> 5/26/19: shooting added. bullets move on their own. continued working on collison -isTouching(). </br>
-<br> 5/27/19: collision works!!! bullets collide with walls. bullets now come directly out of the guns!!! Sounds for shooting added!!!</br>
+<br> 5/27/19: collision works!!! user cannot move through walls bullets collide with walls. bullets now come directly out of the guns!!! Sounds for shooting added!!!</br>
+<br> 5/28/19: fixed sounds, made cartridges rotate as they fall. Added walking animation. 
 
 # Sources
 -sounds from http://soundbible.com/tags-gun.html
