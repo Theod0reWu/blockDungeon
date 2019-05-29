@@ -51,7 +51,7 @@ class User extends Person{
     onScreenX = width/2; onScreenY = height/2;
     strokeWeight(1);
     
-    gun = new Gun(x+35, y+90, 10, new PVector(0,0), 10);
+    gun = new Gun(x+35, y+90, 10, new PVector(0,0), 50);
   }
   void moveDis(){
     pushMatrix();
@@ -153,7 +153,8 @@ class User extends Person{
       gun.shoot(x+35,y+90);
       lastShot = frameCount;
       //sound effects
-      shot.play();
+      //shot.pause();
+      shot.jump(0.1);
       if (shellDropping.isPlaying()){shellDropping.pause();}
       first = true;
     }

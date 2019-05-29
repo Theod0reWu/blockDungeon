@@ -3,6 +3,11 @@ SoundFile shellDropping;
 SoundFile shot;
 SoundFile whiz;
 
+float shotTime;
+float shellTime;
+
+int framerate = 60;
+
 User neo;
 ArrayList<Person> persons;
 ArrayList<Wall> walls;
@@ -14,8 +19,10 @@ ArrayList<Cartridge> cartridges;
 Boolean[] keys;
 float dx, dy;
 void setup(){
-  shellDropping = new SoundFile(this, "sound-ShellFalling.wav");
-  shot = new SoundFile(this, "sound-Gunshot.wav");
+  shellDropping = new SoundFile(this, "ShellFalling.wav");
+  //shellDropping.loop();
+  shot = new SoundFile(this, "GunShot.wav");
+  //shot.loop();shot.pause();
   //shot = new SoundFile(this, "sounds\\sound-Gunshot.mp3");
   //whiz = new SoundFile(this, "sounds\\sound-BulletWhizzing.mp3");
   //frameRate(1000);
@@ -49,6 +56,9 @@ void setup(){
   //bullets.add(new Bullet (neo.x,neo.y, new PVector(1,1)));
 }
 void draw(){
+  frameRate(framerate);
+  //println(shot.isPlaying());
+  //println(shot.duration());
   background(255);
   neo.move();
   dx = width/2 - neo.x;
