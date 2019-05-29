@@ -1,14 +1,16 @@
 String[][] map;
 void generateTerrain(){
+  map = new String[100][100];
   //border
   int wallWidth = 100;
-  int borderLength = 7000;
+  int borderLength = 3000;
   color wallColor = color(100);
-  walls.add(new Wall(0,0,borderLength,wallWidth,wallColor));
-  walls.add(new Wall(0,0,wallWidth,borderLength,wallColor));
-  walls.add(new Wall(borderLength-wallWidth,0, wallWidth,borderLength,wallColor));
-  walls.add(new Wall(0,borderLength - wallWidth, borderLength,wallWidth, wallColor));
+  walls.add(new Wall(0,0,borderLength+2*wallWidth,wallWidth,wallColor));
+  walls.add(new Wall(0,0,wallWidth,borderLength+2*wallWidth,wallColor));
+  walls.add(new Wall(borderLength+wallWidth,0, wallWidth,borderLength+2*wallWidth,wallColor));
+  walls.add(new Wall(0,borderLength+wallWidth, borderLength+2*wallWidth,wallWidth, wallColor));
   
+  //walls.add(new Wall(0,
 }
 void placeBackground(){ //colorful tile background thingy
   

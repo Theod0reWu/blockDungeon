@@ -107,11 +107,11 @@ class User extends Person{
     float i = 100; // increment
     
     if (ltLeg >= maxStep){l =true;}
-    else if (ltLeg <= -.1){l = false;}
+    else if (ltLeg <= -.08){l = false;}
     if (l){ltLeg-=PI/i;}
     else{ltLeg+=PI/i;}
     
-    if (rtLeg >= .1){r =true;}
+    if (rtLeg >= .08){r =true;}
     else if (rtLeg <= -maxStep){r = false;}
     if (r){rtLeg-=PI/i;}
     else{rtLeg+=PI/i;}
@@ -159,7 +159,7 @@ class User extends Person{
       first = true;
     }
     if (frameCount - lastShot > gun.fireRate*2 / 3 &&  frameCount - lastShot < gun.fireRate*2/3 + 2 && first){
-      shellDropping.play();
+      shellDropping.jump(0);
     }
   }
 }

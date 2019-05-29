@@ -16,13 +16,12 @@ ArrayList<Wall> walls;
 ArrayList<Bullet> bullets;
 ArrayList<Effect> effects;
 ArrayList<Cartridge> cartridges;
+
 Boolean[] keys;
 float dx, dy;
 void setup(){
   shellDropping = new SoundFile(this, "ShellFalling.wav");
-  //shellDropping.loop();
   shot = new SoundFile(this, "GunShot.wav");
-  //shot.loop();shot.pause();
   //shot = new SoundFile(this, "sounds\\sound-Gunshot.mp3");
   //whiz = new SoundFile(this, "sounds\\sound-BulletWhizzing.mp3");
   //frameRate(1000);
@@ -60,6 +59,7 @@ void draw(){
   //println(shot.isPlaying());
   //println(shot.duration());
   background(255);
+  //rescale(.1);
   neo.move();
   dx = width/2 - neo.x;
   dy = height/2 - neo.y; //offset by this much (used for mouse too
@@ -161,4 +161,8 @@ void mousePressed(){
 }
 float pyth(float a, float b){
   return sqrt(sq(a)+sq(b));
+}
+void rescale(float scale){
+  translate(width/2 - (width/2*scale),height/2 - (height/2*scale));
+  scale(scale);
 }
