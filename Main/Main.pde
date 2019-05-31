@@ -19,6 +19,8 @@ ArrayList<Cartridge> cartridges;
 
 Boolean[] keys;
 float dx, dy;
+
+float scale = .1;
 void setup(){
   shellDropping = new SoundFile(this, "ShellFalling.wav");
   shot = new SoundFile(this, "GunShot.wav");
@@ -59,7 +61,7 @@ void draw(){
   //println(shot.isPlaying());
   //println(shot.duration());
   background(255);
-  //rescale(.1);
+  rescale(scale);
   neo.move();
   dx = width/2 - neo.x;
   dy = height/2 - neo.y; //offset by this much (used for mouse too
@@ -163,6 +165,9 @@ float pyth(float a, float b){
   return sqrt(sq(a)+sq(b));
 }
 void rescale(float scale){
-  translate(width/2 - (width/2*scale),height/2 - (height/2*scale));
+  //translate(width/2 - (width/2*scale),height/2 - (height/2*scale));
+  float cx = neo.x+35; float cy = neo.y+90;
+  translate(cx,cy);
   scale(scale);
+  translate(-cx,-cy);
 }
