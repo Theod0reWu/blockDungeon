@@ -1,18 +1,25 @@
 String[][] map;
+int floors = 10;
 void generateTerrain(){
   map = new String[100][100];
   //border
   int wallWidth = 100;
-  int borderLength = 5000;
+  int borderLength = 6000;
   color wallColor = color(100);
+  int doorway = 500;
+  
+  int tw = borderLength+2*wallWidth; //total width
   //outer border
-  walls.add(new Wall(0,0,borderLength+2*wallWidth,wallWidth,wallColor));
-  walls.add(new Wall(0,0,wallWidth,borderLength+2*wallWidth,wallColor));
-  walls.add(new Wall(borderLength+wallWidth,0, wallWidth,borderLength+2*wallWidth,wallColor));
-  walls.add(new Wall(0,borderLength+wallWidth, borderLength+2*wallWidth,wallWidth, wallColor));
+  walls.add(new Wall(0,0,tw,wallWidth,wallColor));
+  walls.add(new Wall(0,0,wallWidth,tw,wallColor));
+  walls.add(new Wall(borderLength+wallWidth,0, wallWidth,tw,wallColor));
+  walls.add(new Wall(0,borderLength+wallWidth, tw,wallWidth, wallColor));
   // basic rooms
-  
-  
+  int x = 0;
+  for (float f = borderLength/floors; f <= borderLength - 500; f+=borderLength/floors, x++){
+    if (x%2 == 0){walls.add(new Wall(0,f, tw-500, wallWidth, wallColor));}
+    else {walls.add(new Wall(500,f, tw-500, wallWidth, wallColor));}
+  }
   //walls.add(new Wall(0,
 }
 void placeBackground(){ //colorful tile background thingy

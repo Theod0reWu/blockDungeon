@@ -29,7 +29,7 @@ void setup(){
   //frameRate(1000);
   size(displayWidth, displayHeight);
   //size(2000,1000);
-  neo = new User(width/2,height/2);
+  neo = new User(200,200);
   persons = new ArrayList<Person>();
   //persons.add(neo); //user will now be seperately operated on
   
@@ -146,6 +146,7 @@ void keyPressed(){
    break;
    case 'o':
    if (scale >= .2){scale-=.1;}
+   else if (scale >= .02){scale-=.01;}
    break;
   }
   //println(key+"");
