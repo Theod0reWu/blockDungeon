@@ -3,12 +3,15 @@ void generateTerrain(){
   map = new String[100][100];
   //border
   int wallWidth = 100;
-  int borderLength = 3000;
+  int borderLength = 5000;
   color wallColor = color(100);
+  //outer border
   walls.add(new Wall(0,0,borderLength+2*wallWidth,wallWidth,wallColor));
   walls.add(new Wall(0,0,wallWidth,borderLength+2*wallWidth,wallColor));
   walls.add(new Wall(borderLength+wallWidth,0, wallWidth,borderLength+2*wallWidth,wallColor));
   walls.add(new Wall(0,borderLength+wallWidth, borderLength+2*wallWidth,wallWidth, wallColor));
+  // basic rooms
+  
   
   //walls.add(new Wall(0,
 }

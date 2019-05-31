@@ -29,7 +29,7 @@ void setup(){
   //frameRate(1000);
   size(displayWidth, displayHeight);
   //size(2000,1000);
-  neo = new User(width/2-35,height/2-90);
+  neo = new User(width/2,height/2);
   persons = new ArrayList<Person>();
   //persons.add(neo); //user will now be seperately operated on
   
@@ -62,6 +62,7 @@ void draw(){
   //println(shot.isPlaying());
   //println(shot.duration());
   background(255);
+  //ellipse(width/2,height/2, 10,10);
   rescale(scale);
   neo.move();
   dx = width/2 - neo.x;

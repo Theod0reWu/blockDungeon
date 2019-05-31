@@ -66,7 +66,7 @@ class User extends Person{
     else if ((mouseAngle > HALF_PI || mouseAngle < -HALF_PI) &&  facing){flip = true; facing = false;}
     
     float ox = x; float oy = y; //original x and y
-    float speed = 5;
+    float speed = 7;
     //there might be faster way to detect walls while moving, but whatever
     if (keys[0]){
       boolean go = true;
@@ -127,13 +127,12 @@ class User extends Person{
       gun.getShape().scale(1,-1);
       gun.getShape().rotate(gun.angle);
     }
-    shape(graphics,x,y);
     if (armAngle != mouseAngle){
       arm.rotate(mouseAngle - armAngle);
       gun.rotateShape(mouseAngle);
       armAngle = mouseAngle;
     }
-    //println(degrees(armAngle));
+    shape(graphics,x,y);
     shape(arm,x+35,y+90);
     shape(gun.getShape(),x+35,y+90);
     //line(x+35,y+90,mouseX,mouseY); //looks like laser pointer
