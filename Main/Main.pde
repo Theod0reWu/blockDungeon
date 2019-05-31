@@ -20,14 +20,15 @@ ArrayList<Cartridge> cartridges;
 Boolean[] keys;
 float dx, dy;
 
-float scale = .1;
+float scale = .4;
 void setup(){
   shellDropping = new SoundFile(this, "ShellFalling.wav");
   shot = new SoundFile(this, "GunShot.wav");
   //shot = new SoundFile(this, "sounds\\sound-Gunshot.mp3");
   //whiz = new SoundFile(this, "sounds\\sound-BulletWhizzing.mp3");
   //frameRate(1000);
-  size(displayWidth, displayHeight);
+  //size(displayWidth, displayHeight);
+  size(2000,1000);
   neo = new User(width/2,height/2);
   persons = new ArrayList<Person>();
   //persons.add(neo); //user will now be seperately operated on

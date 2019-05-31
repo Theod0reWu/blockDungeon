@@ -67,11 +67,6 @@ class User extends Person{
     
     float ox = x; float oy = y; //original x and y
     float speed = 5;
-    for (Wall w : walls){
-      if (isTouching(w)){
-        //println("wall!!!"+frameCount);
-      }
-    }
     //there might be faster way to detect walls while moving, but whatever
     if (keys[0]){
       boolean go = true;
