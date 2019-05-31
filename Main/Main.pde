@@ -20,16 +20,16 @@ ArrayList<Cartridge> cartridges;
 Boolean[] keys;
 float dx, dy;
 
-float scale = .4;
+float scale = 1;
 void setup(){
   shellDropping = new SoundFile(this, "ShellFalling.wav");
   shot = new SoundFile(this, "GunShot.wav");
   //shot = new SoundFile(this, "sounds\\sound-Gunshot.mp3");
   //whiz = new SoundFile(this, "sounds\\sound-BulletWhizzing.mp3");
   //frameRate(1000);
-  //size(displayWidth, displayHeight);
-  size(2000,1000);
-  neo = new User(width/2,height/2);
+  size(displayWidth, displayHeight);
+  //size(2000,1000);
+  neo = new User(width/2-35,height/2-90);
   persons = new ArrayList<Person>();
   //persons.add(neo); //user will now be seperately operated on
   
@@ -140,6 +140,12 @@ void keyPressed(){
    case 'd': 
    keys[3] = true;
    break;
+   case 'i':
+   if (scale <= 1.2){scale+=.1;}
+   break;
+   case 'o':
+   if (scale >= .2){scale-=.1;}
+   break;
   }
   //println(key+"");
 }
@@ -167,7 +173,7 @@ float pyth(float a, float b){
 }
 void rescale(float scale){
   //translate(width/2 - (width/2*scale),height/2 - (height/2*scale));
-  float cx = neo.x+35; float cy = neo.y+90;
+  float cx = width/2+35; float cy = height/2+90;
   translate(cx,cy);
   scale(scale);
   translate(-cx,-cy);
