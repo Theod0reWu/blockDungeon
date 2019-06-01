@@ -22,6 +22,8 @@ Boolean[] keys;
 float dx, dy;
 
 float scale = 1;
+
+boolean menu = true;
 void setup(){
   shellDropping = new SoundFile(this, "ShellFalling.wav");
   shot = new SoundFile(this, "GunShot.wav");
@@ -88,6 +90,11 @@ void draw(){
       if (b.isTouching(e) && b.good){
         e.health -= b.damage;
         dead = true; c = color(255);break;}
+    }
+    if (b.isTouching(neo) && !b.good){
+      neo.health -= b.damage;
+      dead = true;
+      c = color(255); break;
     }
     if (dead){
       b.velocity.normalize();
