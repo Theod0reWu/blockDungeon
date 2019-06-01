@@ -16,6 +16,8 @@ class Bullet implements Displayable, Moveable, Collideable{
     angle = velocity.heading();//atan2(velocity.y, velocity.x);
     this.good = good;
     
+    damage = 50;
+    
     c = color(250,208,56);
     bull = createShape();
     bull.beginShape();

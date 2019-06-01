@@ -1,4 +1,4 @@
-class Enemy extends Person{
+class Enemy extends Person implements Collideable{
   float ltLeg = 0; // rotates >= 0
   float rtLeg = 0; // rotates <= 0
   boolean l = true;
@@ -62,7 +62,7 @@ class Enemy extends Person{
    
     strokeWeight(1);
     
-    gun = new Gun(x+35, y+90, 10, new PVector(0,0), 50);
+    gun = new Gun(x+35, y+90, 10, new PVector(0,0), 50, false);
     
     health = 100;
     

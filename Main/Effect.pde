@@ -8,9 +8,9 @@ class Effect implements Displayable{
     particles = new ArrayList<Particle>();
     initialTick = frameCount;
     
-    int numP = (int)random(5) + 5;
+    int numP = (int)random(mag/3) + 6;
     for (int p = 0; p < numP; p++){
-      float s = random(5)+5;
+      float s = random(mag/3)+5;
       float theta = random(2*PI);
       float  nx = x+cos(theta)*mag*random(1);
       float ny = y+sin(theta)*mag*random(1);
@@ -46,7 +46,7 @@ class Particle{
       lastMove = frameCount;
       moves++;
     }
-    if (moves > 10){alive = false;}
+    if (moves > 11){alive = false;}
   }
   void display(){
     fill(c);

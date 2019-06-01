@@ -12,10 +12,13 @@ class Gun{
   
   int armL;
   int gunH;
-  Gun(float x, float y, float d, PVector v, float fr){
+  
+  boolean good;
+  Gun(float x, float y, float d, PVector v, float fr, boolean good){
     this.x = x; this.y = y; //v.x+=random(.4)-.2;v.y+=random(.4)-.2;
     damage = d; velocity = v; angle = 0;
     fireRate = fr;
+    this.good = good;
     
     armL = 50;
     gunH = 22;
@@ -64,7 +67,7 @@ class Gun{
     if (angle > HALF_PI || angle < -HALF_PI){
       bv = new PVector(cos(-angle+randFactor)*speed, sin(-angle+randFactor)*speed);
     }
-    Bullet b = new Bullet(x+gunFactorX,y-gunFactorY,bv,true);
+    Bullet b = new Bullet(x+gunFactorX,y-gunFactorY,bv,good);
     //println(angle);
     bullets.add(b);
     //println("o: "+b.x+":"+ b.y);

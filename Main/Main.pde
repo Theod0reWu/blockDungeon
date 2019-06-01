@@ -80,13 +80,19 @@ void draw(){
   }
   for(Bullet b: bullets){
     boolean dead = false;
+    color c = color(0);
     for (Wall w: walls){
-      if (b.isTouching(w)){dead = true;break;}
+      if (b.isTouching(w)){dead = true; c = color(150);break;}
+    }
+    for (Enemy e: enemies){
+      if (b.isTouching(e) && b.good){
+        e.health -= b.damage;
+        dead = true; c = color(255);break;}
     }
     if (dead){
       b.velocity.normalize();
       int factor = 15;
-      effects.add(new Effect(b.x+b.velocity.x*15,b.y+b.velocity.y*15,10, color(150)));
+      effects.add(new Effect(b.x+b.velocity.x*15,b.y+b.velocity.y*15,10, c));
       //whiz.play();
       bullets.remove(b);
       break;
@@ -95,7 +101,9 @@ void draw(){
     b.display();
   }
   for (Enemy e : enemies){
-    if (e.health<=0){enemies.remove(e);break;}
+    if (e.health<=0){
+      effects.add(new Effect(e.x+35, e.y+90, 80, color(255)));
+      enemies.remove(e);break;}
     e.move();
     e.display();
   }
