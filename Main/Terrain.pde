@@ -23,8 +23,8 @@ void generateTerrain(){
   }
   //walls.add(new Wall(0,
 }
-void placeBackground(){ //colorful tile background thingy
-  
+void placeBackground(){ //colorful tile background custom background
+  rect(0,0,borderLength, borderLength, color(200));
 }
 class Wall implements Displayable, Collideable{
   float x,y,w,h; //top left corner

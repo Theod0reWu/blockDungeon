@@ -86,6 +86,7 @@ void draw(){
     //println(shot.isPlaying());
     //println(shot.duration());
     background(255);
+    placeBackground();
     //ellipse(width/2,height/2, 10,10);
     rescale(scale);
     neo.move(); //println(width+":"+height);
@@ -93,7 +94,8 @@ void draw(){
     dy = height/2 - neo.y - ay; //offset by this much (used for mouse too
     offsetX = dx * easing;
     offsetY = dy * easing;
-    ax+= offsetX; ay+=offsetY; println("a:"+ax+":"+ay);
+    if (abs(offsetX) > 1){ax+= offsetX;} 
+    if (abs(offsetY) > 1){ay+=offsetY;} //println("a:"+ax+":"+ay);
     translate(ax,ay); //println(offsetX+":"+offsetY); //should be 760 340
     //cannot use b/c of mouse aiming
     //translate(dx,dy); //println(dx+":"+dy);
