@@ -2,6 +2,7 @@ import processing.sound.*;
 SoundFile shellDropping;
 SoundFile shot;
 SoundFile whiz;
+SoundFile hit;
 
 float shotTime;
 float shellTime;
@@ -31,6 +32,7 @@ boolean menu = true;
 void setup(){
   shellDropping = new SoundFile(this, "ShellFalling.wav");
   shot = new SoundFile(this, "GunShot.wav");
+  hit = new SoundFile(this, "Hurt.wav");
   //shot = new SoundFile(this, "sounds\\sound-Gunshot.mp3");
   //whiz = new SoundFile(this, "sounds\\sound-BulletWhizzing.mp3");
   //frameRate(1000);
@@ -86,7 +88,6 @@ void draw(){
     //println(shot.isPlaying());
     //println(shot.duration());
     background(255);
-    placeBackground();
     //ellipse(width/2,height/2, 10,10);
     rescale(scale);
     neo.move(); //println(width+":"+height);
@@ -99,6 +100,7 @@ void draw(){
     translate(ax,ay); //println(offsetX+":"+offsetY); //should be 760 340
     //cannot use b/c of mouse aiming
     //translate(dx,dy); //println(dx+":"+dy);
+    placeBackground();
     textSize(20);
     fill(0);
     neo.shoot(); //machine gun
@@ -114,11 +116,11 @@ void draw(){
       }
       for (Enemy e: enemies){
         if (b.isTouching(e) && b.good){
-          e.health -= b.damage;
+          e.health -= b.damage;hit.jump(0);
           dead = true; c = color(255);break;}
       }
       if (b.isTouching(neo) && !b.good){
-        neo.health -= b.damage;
+        neo.health -= b.damage;hit.jump(0);
         dead = true;
         c = color(255); break;
       }
