@@ -17,6 +17,7 @@ class Enemy extends Person implements Collideable{
   float onScreenX, onScreenY;
   
   boolean emove[];
+  int speed = 6;
   Enemy(float x, float y){
     super(x,y);
     ltLeg = PI/6; // PI/2 is max, 0 is min
@@ -77,8 +78,11 @@ class Enemy extends Person implements Collideable{
     mouseAngle = atan2(neo.y-onScreenY,neo.x-onScreenX);
     if ((mouseAngle <= HALF_PI && mouseAngle >= -HALF_PI) &&  !facing){flip = true; facing = true;}
     else if ((mouseAngle > HALF_PI || mouseAngle < -HALF_PI) &&  facing){flip = true; facing = false;}
-    int speed = 6;
-    if (emove[0]){
+    float ox = x; float oy = y;
+    if (ox != x || oy != y){walk();} 
+  }
+  void move(boolean[] emove){
+   if (emove[0]){
       boolean go = true;
       for (Wall w : walls){
         if (willTouch(w,0,-speed)){go = false; break;}
@@ -106,6 +110,19 @@ class Enemy extends Person implements Collideable{
       }
       if (go) {neo.x+=speed;}
     }
+  }
+  void walk(){//just the animation
+    float i = 100; // increment
+    
+    if (ltLeg >= maxStep){l =true;}
+    else if (ltLeg <= -.08){l = false;}
+    if (l){ltLeg-=PI/i;}
+    else{ltLeg+=PI/i;}
+    
+    if (rtLeg >= .08){r =true;}
+    else if (rtLeg <= -maxStep){r = false;}
+    if (r){rtLeg-=PI/i;}
+    else{rtLeg+=PI/i;}
   }
   void display(){
     //float x = onScreenX; float y = onScreenY; //easier to display but might need to changed later

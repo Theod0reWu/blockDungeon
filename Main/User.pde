@@ -154,7 +154,7 @@ class User extends Person{
   float lastShot = frameCount;
   boolean first = false;
   void shoot(){
-    if (frameCount - lastShot > gun.fireRate && mousePressed){
+    if (frameCount - lastShot > gun.fireRate && mousePressed && frameCount - rmenu > 2){
       gun.shoot(x+35,y+90);
       lastShot = frameCount;
       //sound effects

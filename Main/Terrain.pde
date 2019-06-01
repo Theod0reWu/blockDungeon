@@ -1,10 +1,10 @@
 String[][] map;
 int floors = 3;
 int borderLength = 6000;
+int wallWidth = 100;
 void generateTerrain(){
   map = new String[100][100];
   //border
-  int wallWidth = 100;
   borderLength = 6000;
   color wallColor = color(100);
   int doorway = 500;
@@ -25,7 +25,7 @@ void generateTerrain(){
 }
 void placeBackground(){ //colorful tile background custom background
   fill(200);
-  rect(0,0,borderLength, borderLength);
+  rect(0,0,borderLength+2*wallWidth, borderLength+2*wallWidth);
 }
 class Wall implements Displayable, Collideable{
   float x,y,w,h; //top left corner
