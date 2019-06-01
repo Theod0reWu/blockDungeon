@@ -13,6 +13,8 @@
 <br> 5/26/19: shooting added. bullets move on their own. continued working on collison -isTouching(). </br>
 <br> 5/27/19: collision works!!! user cannot move through walls bullets collide with walls. bullets now come directly out of the guns!!! Sounds for shooting added!!!</br>
 <br> 5/28/19: fixed sounds, made cartridges rotate as they fall. Added walking animation. 
-
+<br> 5/29/19: worked on scaling the world and finding correct way to translate back </br>
+<br> 5/30/19: fixed scaling, by making world scale around character. realized different git account was commiting because of switching to desktop </br>
+<br> 5/31/19: got started on the map and floors. made the enemies graphics and positioning, made the bullets dealing damage feature </br>
 # Sources
 -sounds from http://soundbible.com/tags-gun.html
