@@ -13,7 +13,7 @@ class User extends Person{
   
   PVector v = new PVector(0,0);
   
-  int health;
+  int health; int speed = 7;
   User(float x , float y){
     super(x,y);
     ltLeg = PI/6; // PI/2 is max, 0 is min
@@ -66,12 +66,13 @@ class User extends Person{
   }
   void move(){ //println(neo.x+":"+ax);
     onScreenX = neo.x + ax; onScreenY = neo.y + ay; //println("screen:"+onScreenX + ":"+ onScreenY);
+    onScreenX = width/2 + (onScreenX - width/2)*scale; onScreenY = height/2 + (onScreenY - height/2)*scale;
     mouseAngle = atan2(mouseY-onScreenY-90,mouseX-onScreenX-35);
     if ((mouseAngle <= HALF_PI && mouseAngle >= -HALF_PI) &&  !facing){flip = true; facing = true;}
     else if ((mouseAngle > HALF_PI || mouseAngle < -HALF_PI) &&  facing){flip = true; facing = false;}
     
     float ox = x; float oy = y; //original x and y
-    float speed = 7;
+    //float speed = 7;
     //there might be faster way to detect walls while moving, but whatever
     if (keys[0]){
       boolean go = true;

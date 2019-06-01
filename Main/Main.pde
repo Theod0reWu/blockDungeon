@@ -197,6 +197,10 @@ void keyPressed(){
    case 'm':
    menu=!menu;
    break;
+   case ' ':
+   framerate = 20;
+   neo.speed=21;
+   break;
   }
   //println(key+"");
 }
@@ -213,6 +217,10 @@ void keyReleased(){
    break;
    case 'd': 
    keys[3] = false;
+   break;
+   case ' ':
+   framerate = 60;
+   neo.speed= 7;
    break;
   }
 }
