@@ -64,7 +64,8 @@ class User extends Person{
     popMatrix();
     
   }
-  void move(){
+  void move(){ //println(neo.x+":"+ax);
+    onScreenX = neo.x + ax; onScreenY = neo.y + ay; println("screen:"+onScreenX + ":"+ onScreenY);
     mouseAngle = atan2(mouseY-onScreenY-90,mouseX-onScreenX-35);
     if ((mouseAngle <= HALF_PI && mouseAngle >= -HALF_PI) &&  !facing){flip = true; facing = true;}
     else if ((mouseAngle > HALF_PI || mouseAngle < -HALF_PI) &&  facing){flip = true; facing = false;}

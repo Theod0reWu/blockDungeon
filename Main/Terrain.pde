@@ -1,10 +1,11 @@
 String[][] map;
 int floors = 3;
+int borderLength = 6000;
 void generateTerrain(){
   map = new String[100][100];
   //border
   int wallWidth = 100;
-  int borderLength = 6000;
+  borderLength = 6000;
   color wallColor = color(100);
   int doorway = 500;
   

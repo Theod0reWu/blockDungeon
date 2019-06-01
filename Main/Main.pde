@@ -20,8 +20,12 @@ ArrayList<Enemy> enemies;
 
 Boolean[] keys;
 float dx, dy;
+float ax = 0, ay = 0; //"actual" x and y
 
 float scale = 1;
+float offsetX = 0;
+float offsetY = 0;
+float easing = .07;
 
 boolean menu = true;
 void setup(){
@@ -63,66 +67,87 @@ void setup(){
   //bullets.add(new Bullet (neo.x,neo.y, new PVector(1,1)));
 }
 void draw(){
-  frameRate(framerate);
-  //println(shot.isPlaying());
-  //println(shot.duration());
-  background(255);
-  //ellipse(width/2,height/2, 10,10);
-  rescale(scale);
-  neo.move();
-  dx = width/2 - neo.x;
-  dy = height/2 - neo.y; //offset by this much (used for mouse too
-  translate(dx,dy);
-  textSize(20);
-  fill(0);
-  neo.shoot(); //machine gun
-  for (Cartridge c : cartridges){
-    c.display();
-    if (c.dead){cartridges.remove(c); break;}
+  if (menu){
+    background(150,.1);
+    textSize(32);
+    
+    fill(0);
+    ellipse(width/2,height*2/3, 100,100);
+    fill(255);
+    text("PLAY",width/2-38,height*2/3 + 10);
+    
+    textSize(20);
+    text("Use the wasd keys to move", 50,50);
+    
+    if (mousePressed && sqrt(sq(mouseX - width/2)+sq(mouseY-height*2/3)) <= 90){menu = false;}
   }
-  for(Bullet b: bullets){
-    boolean dead = false;
-    color c = color(0);
+  else{
+    frameRate(framerate);
+    //println(shot.isPlaying());
+    //println(shot.duration());
+    background(255);
+    //ellipse(width/2,height/2, 10,10);
+    rescale(scale);
+    neo.move(); //println(width+":"+height);
+    dx = width/2 - neo.x - ax;
+    dy = height/2 - neo.y - ay; //offset by this much (used for mouse too
+    offsetX = dx * easing;
+    offsetY = dy * easing;
+    ax+= offsetX; ay+=offsetY; println("a:"+ax+":"+ay);
+    translate(ax,ay); //println(offsetX+":"+offsetY); //should be 760 340
+    //cannot use b/c of mouse aiming
+    //translate(dx,dy); //println(dx+":"+dy);
+    textSize(20);
+    fill(0);
+    neo.shoot(); //machine gun
+    for (Cartridge c : cartridges){
+      c.display();
+      if (c.dead){cartridges.remove(c); break;}
+    }
+    for(Bullet b: bullets){
+      boolean dead = false;
+      color c = color(0);
+      for (Wall w: walls){
+        if (b.isTouching(w)){dead = true; c = color(150);break;}
+      }
+      for (Enemy e: enemies){
+        if (b.isTouching(e) && b.good){
+          e.health -= b.damage;
+          dead = true; c = color(255);break;}
+      }
+      if (b.isTouching(neo) && !b.good){
+        neo.health -= b.damage;
+        dead = true;
+        c = color(255); break;
+      }
+      if (dead){
+        b.velocity.normalize();
+        int factor = 15;
+        effects.add(new Effect(b.x+b.velocity.x*15,b.y+b.velocity.y*15,10, c));
+        //whiz.play();
+        bullets.remove(b);
+        break;
+      }
+      b.move();
+      b.display();
+    }
+    for (Enemy e : enemies){
+      if (e.health<=0){
+        effects.add(new Effect(e.x+35, e.y+90, 80, color(255)));
+        enemies.remove(e);break;}
+      e.move();
+      e.display();
+    }
     for (Wall w: walls){
-      if (b.isTouching(w)){dead = true; c = color(150);break;}
+      w.display();
     }
-    for (Enemy e: enemies){
-      if (b.isTouching(e) && b.good){
-        e.health -= b.damage;
-        dead = true; c = color(255);break;}
+    //neo.moveDis(); for the panning thing (maybe later)
+    neo.display();
+    //if (mousePressed){effects.add(new Effect(mouseX-dx, mouseY-dy,10));} //proper usage of dx dy on mouse
+    for (Effect e:effects){
+      e.display();
+      if (e.particles.size() == 0){effects.remove(e); break;}
     }
-    if (b.isTouching(neo) && !b.good){
-      neo.health -= b.damage;
-      dead = true;
-      c = color(255); break;
-    }
-    if (dead){
-      b.velocity.normalize();
-      int factor = 15;
-      effects.add(new Effect(b.x+b.velocity.x*15,b.y+b.velocity.y*15,10, c));
-      //whiz.play();
-      bullets.remove(b);
-      break;
-    }
-    b.move();
-    b.display();
-  }
-  for (Enemy e : enemies){
-    if (e.health<=0){
-      effects.add(new Effect(e.x+35, e.y+90, 80, color(255)));
-      enemies.remove(e);break;}
-    e.move();
-    e.display();
-  }
-  for (Wall w: walls){
-    w.display();
-  }
-  //neo.moveDis(); for the panning thing (maybe later)
-  neo.display();
-  //if (mousePressed){effects.add(new Effect(mouseX-dx, mouseY-dy,10));} //proper usage of dx dy on mouse
-  for (Effect e:effects){
-    e.display();
-    if (e.particles.size() == 0){effects.remove(e); break;}
   }
 }
 interface Displayable{
@@ -164,6 +189,9 @@ void keyPressed(){
    case 'o':
    if (scale >= .2){scale-=.1;}
    else if (scale >= .02){scale-=.01;}
+   break;
+   case 'm':
+   menu=!menu;
    break;
   }
   //println(key+"");
