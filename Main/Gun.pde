@@ -13,7 +13,7 @@ class Gun{
   int armL;
   int gunH;
   Gun(float x, float y, float d, PVector v, float fr){
-    this.x = x; this.y = y;
+    this.x = x; this.y = y; //v.x+=random(.4)-.2;v.y+=random(.4)-.2;
     damage = d; velocity = v; angle = 0;
     fireRate = fr;
     
@@ -59,9 +59,10 @@ class Gun{
     }
     //println(degrees(a));
     float speed = 28; // cannot be higher than wall thickness
-    PVector bv = new PVector(cos(angle)*speed, sin(angle)*speed);
+    float randFactor = random(.1)-.05;
+    PVector bv = new PVector(cos(angle+randFactor)*speed, sin(angle+randFactor)*speed);
     if (angle > HALF_PI || angle < -HALF_PI){
-      bv = new PVector(cos(-angle)*speed, sin(-angle)*speed);
+      bv = new PVector(cos(-angle+randFactor)*speed, sin(-angle+randFactor)*speed);
     }
     Bullet b = new Bullet(x+gunFactorX,y-gunFactorY,bv,true);
     //println(angle);
@@ -69,7 +70,8 @@ class Gun{
     //println("o: "+b.x+":"+ b.y);
     //println("b: "+b.getX()+":"+ b.getY());
     //special effects
-    cartridges.add(new Cartridge(x+gunFactorX+random(15)-7, y-gunFactorY, bv.heading(), new PVector(random(.1)-.05,5)));
+    Cartridge c = new Cartridge(x+gunFactorX+random(15)-7, y-gunFactorY, bv.heading(), new PVector(random(.1)-.05,5));
+    cartridges.add(c);
   }
 }
 enum GunTypes{

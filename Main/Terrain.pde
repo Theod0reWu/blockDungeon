@@ -1,5 +1,5 @@
 String[][] map;
-int floors = 10;
+int floors = 3;
 void generateTerrain(){
   map = new String[100][100];
   //border

@@ -16,6 +16,7 @@ ArrayList<Wall> walls;
 ArrayList<Bullet> bullets;
 ArrayList<Effect> effects;
 ArrayList<Cartridge> cartridges;
+ArrayList<Enemy> enemies;
 
 Boolean[] keys;
 float dx, dy;
@@ -32,6 +33,8 @@ void setup(){
   neo = new User(200,200);
   persons = new ArrayList<Person>();
   //persons.add(neo); //user will now be seperately operated on
+  enemies = new ArrayList<Enemy>();
+  enemies.add(new Enemy( 500,500));
   
   bullets = new ArrayList<Bullet>();
   
@@ -91,15 +94,14 @@ void draw(){
     b.move();
     b.display();
   }
+  for (Enemy e : enemies){
+    if (e.health<=0){enemies.remove(e);break;}
+    e.move();
+    e.display();
+  }
   for (Wall w: walls){
     w.display();
   }
-  //for (Moveable m: movies){
-    //m.move();
-  //}
-  //for (Displayable d: dis){
-    //d.display();
-  //}
   //neo.moveDis(); for the panning thing (maybe later)
   neo.display();
   //if (mousePressed){effects.add(new Effect(mouseX-dx, mouseY-dy,10));} //proper usage of dx dy on mouse
@@ -167,9 +169,7 @@ void keyReleased(){
    break;
   }
 }
-void mousePressed(){
-  //neo.shoot();
-}
+
 float pyth(float a, float b){
   return sqrt(sq(a)+sq(b));
 }

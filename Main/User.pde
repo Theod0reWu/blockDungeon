@@ -12,6 +12,8 @@ class User extends Person{
   float onScreenX, onScreenY;
   
   PVector v = new PVector(0,0);
+  
+  int health;
   User(float x , float y){
     super(x,y);
     ltLeg = PI/6; // PI/2 is max, 0 is min
@@ -51,7 +53,9 @@ class User extends Person{
     onScreenX = width/2; onScreenY = height/2;
     strokeWeight(1);
     
-    gun = new Gun(x+35, y+90, 10, new PVector(0,0), 50);
+    gun = new Gun(x+35, y+90, 10, new PVector(0,0), 45);
+    
+    health = 100;
   }
   void moveDis(){
     pushMatrix();
@@ -97,7 +101,12 @@ class User extends Person{
       if (go) {neo.x+=speed;}
     }
     if (ox != x || oy != y){walk();}
+    else{legBack();}
   };
+  void legBack(){
+    if (ltLeg > PI/8+.5){ltLeg-=PI/100;}
+    else if (ltLeg < PI/8-.5){ltLeg+=PI/100;}
+  }
   void walk(){//just the animation
     float i = 100; // increment
     
