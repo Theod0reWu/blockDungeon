@@ -133,7 +133,7 @@ class Enemy extends Person implements Collideable{
   void display(){
     //float x = onScreenX; float y = onScreenY; //easier to display but might need to changed later
     fill(255);
-    strokeWeight(3);
+    strokeWeight(3); stroke(0);
     aRect(x+35-5,y+140-5,20,60,ltLeg);
     aRect(x+35+5,y+140-5,20,60,rtLeg);
     strokeWeight(1);

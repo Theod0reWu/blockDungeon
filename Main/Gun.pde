@@ -73,7 +73,9 @@ class Gun{
     if (angle > HALF_PI || angle < -HALF_PI){
       bv = new PVector(cos(-angle+randFactor)*speed, sin(-angle+randFactor)*speed);
     }
-    Bullet b = new Bullet(x+gunFactorX,y-gunFactorY,bv,good);
+    int d = 1;
+    if (good == true) {d = 5;}
+    Bullet b = new Bullet(x+gunFactorX,y-gunFactorY,bv,good, d);
     //println(angle);
     bullets.add(b);
     //println("o: "+b.x+":"+ b.y);
