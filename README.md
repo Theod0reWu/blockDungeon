@@ -1,4 +1,4 @@
-# <<[[[Block Dungeon]]]>>
+# [[[Block Dungeon]]]
 # Directions
   Once downloaded you can run this project on processing. <b>WARNING!!!</b> you need to have the sound library installed for this project to run. This can be done by clicking "sketch", then select "Add Library..." from the "Import Library..." submenu within the Sketch menu. search "sound" and add it.
 # Developement Log 
@@ -16,5 +16,6 @@
 <br> 5/29/19: worked on scaling the world and finding correct way to translate back </br>
 <br> 5/30/19: fixed scaling, by making world scale around character. realized different git account was commiting because of switching to desktop </br>
 <br> 5/31/19: got started on the map and floors. made the enemies graphics and positioning, made the bullets dealing damage feature </br>
+<br> 6/1/19: made offset moving to make it smoother and more realistic. added reloading after firing a certain number of bullets. added getting hurt noises</br>
 # Sources
 -sounds from http://soundbible.com/tags-gun.html
