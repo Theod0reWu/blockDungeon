@@ -53,7 +53,7 @@ class User extends Person{
     onScreenX = width/2; onScreenY = height/2;
     strokeWeight(1);
     
-    gun = new Gun(x+35, y+90, 10, new PVector(0,0), 45, true);
+    gun = new Gun(x+35, y+90, 10, new PVector(0,0), 38, true);
     
     health = 100;
   }
@@ -167,7 +167,7 @@ class User extends Person{
       
       //if (shellDropping.isPlaying()){shellDropping.pause();}
     }
-    if (frameCount - lastShot > gun.fireRate*2 / 3 &&  frameCount - lastShot < gun.fireRate*2/3 + 2 && first){
+    if (frameCount - lastShot > gun.fireRate*2 / 3 &&  frameCount - lastShot < gun.fireRate*2/3 + 2 && first && !mousePressed){
       shellDropping.jump(0);
     }
   }

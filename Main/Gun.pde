@@ -82,8 +82,8 @@ class Gun{
     Cartridge c = new Cartridge(x+gunFactorX+random(15)-7, y-gunFactorY, bv.heading(), new PVector(random(.1)-.05,5));
     cartridges.add(c);
   }
-  void reload(){
-    if (reloadTimer == 0){clip.jump(0);}
+  void reload(){ //println(reloadTimer);
+    if (reloadTimer == 1){clip.jump(0);}
     if (reloadTimer == 60){
       reloadTimer = 0;
       reload.jump(0); 

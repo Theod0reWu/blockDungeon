@@ -91,9 +91,11 @@ void draw() {
     text("Click the button to play", width/2 - 160, height*2/3 - 60);
 
     textSize(20);
+    fill(0);
     text("Directions:", 50, 30);
+    fill(255);
     text("Use the wasd keys to move. Press the 'esc' key to quit.", 50, 50);
-    text("Move the mouse to aim. click to shoot. Press 'm' to pause and resume.", 50,70);
+    text("Move the mouse to aim. Left Click to shoot. Press 'm' to pause and resume.", 50,70);
     text("Press 'r' to reload", 50,90);
 
     fill(0);
@@ -123,10 +125,10 @@ void draw() {
     dy = height/2 - neo.y - ay; //offset by this much (used for mouse too
     offsetX = dx * easing;
     offsetY = dy * easing;
-    if (abs(offsetX) > 1) {
+    if (abs(offsetX) > 2) {
       ax+= offsetX;
     } 
-    if (abs(offsetY) > 1) {
+    if (abs(offsetY) > 2) {
       ay+=offsetY;
     } //println("a:"+ax+":"+ay);
     translate(ax, ay); //println(offsetX+":"+offsetY); //should be 760 340
@@ -204,6 +206,8 @@ void draw() {
         break;
       }
     }
+    
+    displayHeadbar();
   }
 }
 interface Displayable {
