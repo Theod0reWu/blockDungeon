@@ -14,6 +14,10 @@ class Gun{
   int gunH;
   
   boolean good;
+  
+  int reloadTimer = 0;
+  final int magCapacity = 7;
+  int inMag = 7;
   Gun(float x, float y, float d, PVector v, float fr, boolean good){
     this.x = x; this.y = y; //v.x+=random(.4)-.2;v.y+=random(.4)-.2;
     damage = d; velocity = v; angle = 0;
@@ -51,6 +55,8 @@ class Gun{
   }
   
   void shoot(float x, float y){
+    if (inMag == 0){dryGun.jump(0);return;}
+    inMag--;
     float a = angle;
     float cartAngle = angle - HALF_PI;
     gunFactorX = armL*cos(a)+(gunH-5)*cos(a-HALF_PI);
@@ -75,6 +81,16 @@ class Gun{
     //special effects
     Cartridge c = new Cartridge(x+gunFactorX+random(15)-7, y-gunFactorY, bv.heading(), new PVector(random(.1)-.05,5));
     cartridges.add(c);
+  }
+  void reload(){
+    if (reloadTimer == 0){clip.jump(0);}
+    if (reloadTimer == 60){
+      reloadTimer = 0;
+      reload.jump(0); 
+      inMag = magCapacity;
+      reloading = false;
+    }
+    ++reloadTimer;
   }
 }
 enum GunTypes{

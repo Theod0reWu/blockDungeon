@@ -153,16 +153,19 @@ class User extends Person{
   }
   float lastShot = frameCount;
   boolean first = false;
-  void shoot(){
-    if (frameCount - lastShot > gun.fireRate && mousePressed && frameCount - rmenu > 2){
+  void shoot(){//println(frameCount - rmenu);
+    if (frameCount - lastShot > gun.fireRate && mousePressed && frameCount - rmenu > 5 && mouseButton == LEFT){
+      if (gun.inMag != 0){
+        if (shellDropping.isPlaying()){shellDropping.pause();}
+        shot.jump(0.1);
+        first = true;
+      }else {first = false;}
       gun.shoot(x+35,y+90);
       lastShot = frameCount;
       //sound effects
       //shot.pause();
-      if (shellDropping.isPlaying()){shellDropping.pause();}
-      shot.jump(0.1);
+      
       //if (shellDropping.isPlaying()){shellDropping.pause();}
-      first = true;
     }
     if (frameCount - lastShot > gun.fireRate*2 / 3 &&  frameCount - lastShot < gun.fireRate*2/3 + 2 && first){
       shellDropping.jump(0);

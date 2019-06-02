@@ -4,6 +4,9 @@ SoundFile shot;
 SoundFile whiz;
 SoundFile hit;
 SoundFile dying;
+SoundFile dryGun;
+SoundFile clip;
+SoundFile reload;
 
 float shotTime;
 float shellTime;
@@ -31,11 +34,16 @@ float easing = .07;
 
 boolean menu = true;
 int rmenu;
+
+boolean reloading = false;
 void setup() {
   shellDropping = new SoundFile(this, "ShellFalling.wav");
   shot = new SoundFile(this, "GunShot.wav");
   hit = new SoundFile(this, "Hurt.wav");
   dying = new SoundFile(this, "Dying.wav");
+  dryGun = new SoundFile(this, "Gun+Empty.wav");
+  clip = new SoundFile(this, "Gun+Clip.wav");
+  reload = new SoundFile(this, "Gun+Reload.wav");
   //shot = new SoundFile(this, "sounds\\sound-Gunshot.mp3");
   //whiz = new SoundFile(this, "sounds\\sound-BulletWhizzing.mp3");
   //frameRate(1000);
@@ -86,6 +94,7 @@ void draw() {
     text("Directions:", 50, 30);
     text("Use the wasd keys to move. Press the 'esc' key to quit.", 50, 50);
     text("Move the mouse to aim. click to shoot. Press 'm' to pause and resume.", 50,70);
+    text("Press 'r' to reload", 50,90);
 
     fill(0);
     rect(50, 100, 200, 130);
@@ -127,6 +136,7 @@ void draw() {
     textSize(20);
     fill(0);
     neo.shoot(); //machine gun
+    if (reloading){neo.gun.reload();}
     for (Cartridge c : cartridges) {
       c.display();
       if (c.dead) {
@@ -269,6 +279,9 @@ void keyReleased() {
   case ' ':
     framerate = 60;
     neo.speed= 7;
+    break;
+  case 'r':
+    reloading = true;
     break;
   }
 }
