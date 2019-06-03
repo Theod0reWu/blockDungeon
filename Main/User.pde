@@ -53,8 +53,8 @@ class User extends Person{
     onScreenX = width/2; onScreenY = height/2;
     strokeWeight(1);
     
-    gun = new Gun(x+35, y+90, 50, new PVector(0,0), 28, true);
-    gun = new MachineGun(x+35, y+90, 50, new PVector(0,0), 10, true);
+    gun = new Gun(x+35, y+90, new PVector(0,0), 28, true);
+    //gun = new MachineGun(x+35, y+90, 20, new PVector(0,0), 10, true);
     
     health = 100;
   }

@@ -22,9 +22,9 @@ class Gun{
   int inMag;
   
   float rand = .1;
-  Gun(float x, float y, int d, PVector v, float fr, boolean good){
+  Gun(float x, float y, PVector v, float fr, boolean good){
     this.x = x; this.y = y; //v.x+=random(.4)-.2;v.y+=random(.4)-.2;
-    damage = d; velocity = v; angle = 0;
+    damage = 10 ; velocity = v; angle = 0;
     fireRate = fr;
     this.good = good;
     inMag = magCapacity;
@@ -99,8 +99,8 @@ class Gun{
   }
 }
 class MachineGun extends Gun{
-  MachineGun(float x, float y, int d, PVector v, float fr, boolean good){
-    super(x,y,d,v,fr,good);
+  MachineGun(float x, float y, PVector v, float fr, boolean good){
+    super(x,y,v,fr,good);
     stroke(0); strokeWeight(2);
     fill(#5D5A5A);
     PShape bull = createShape(GROUP);
@@ -180,9 +180,10 @@ class MachineGun extends Gun{
     gunny = bull;
     
     magCapacity = 24;
-    inMag = 24;
+    inMag = 0;
     reloadTime = 90;
     rand = .2;
+    damage = 10;
     fill(255);
   }
 }

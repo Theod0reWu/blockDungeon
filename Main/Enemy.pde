@@ -69,9 +69,9 @@ class Enemy extends Person implements Collideable{
    
     strokeWeight(1);
     
-    gun = new Gun(x+35, y+90, 10, new PVector(0,0), 50, false);
+    gun = new Gun(x+35, y+90, new PVector(0,0), 50, false);
     
-    health = 100;
+    health = (int)random(3)*10 + 20;
     
     onScreenX = x;
     onScreenY = y;
