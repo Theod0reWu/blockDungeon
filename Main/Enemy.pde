@@ -161,6 +161,7 @@ class Enemy extends Person implements Collideable{
       gun.rotateShape(mouseAngle);
       armAngle = mouseAngle;
     }
+    resetColors(); fill(255);
     shape(graphics,x,y);
     shape(arm,x+35,y+90);
     shape(gun.getShape(),x+35,y+90);

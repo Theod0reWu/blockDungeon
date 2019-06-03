@@ -54,6 +54,7 @@ class User extends Person{
     strokeWeight(1);
     
     gun = new Gun(x+35, y+90, 50, new PVector(0,0), 28, true);
+    gun = new MachineGun(x+35, y+90, 50, new PVector(0,0), 10, true);
     
     health = 100;
   }
@@ -154,7 +155,7 @@ class User extends Person{
   float lastShot = frameCount;
   boolean first = false;
   void shoot(){//println(frameCount - rmenu);
-    if (frameCount - lastShot > gun.fireRate && mousePressed && frameCount - rmenu > 5 && mouseButton == LEFT){
+    if (frameCount - lastShot > gun.fireRate && mousePressed && frameCount - rmenu > 5 && mouseButton == LEFT && !reloading){
       if (gun.inMag != 0){
         if (shellDropping.isPlaying()){shellDropping.pause();}
         shot.jump(0.1);

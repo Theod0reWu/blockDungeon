@@ -271,7 +271,7 @@ void keyPressed() {
     }
     break;
   case 'o':
-    if (scale >= .2) {
+    if (scale >= .1) {
       scale-=.1;
     } /*else if (scale >= .02) {
       scale-=.01;
@@ -308,7 +308,7 @@ void keyReleased() {
     neo.speed= 7;
     break;
   case 'r':
-    if (neo.gun.inMag == 0){reloading = true;}
+    if (neo.gun.inMag <= neo.gun.magCapacity){reloading = true;}
     break;
   }
 }
