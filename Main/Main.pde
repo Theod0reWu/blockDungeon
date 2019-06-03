@@ -22,6 +22,7 @@ ArrayList<Bullet> bullets;
 ArrayList<Effect> effects;
 ArrayList<Cartridge> cartridges;
 ArrayList<Enemy> enemies;
+ArrayList<Room> areas;
 
 Boolean[] keys;
 float dx, dy;
@@ -58,6 +59,7 @@ void setup() {
   bullets = new ArrayList<Bullet>();
 
   walls = new ArrayList<Wall>();
+  areas = new ArrayList<Room>();
   generateTerrain();
 
   //movies = new ArrayList<Moveable>();
@@ -96,19 +98,38 @@ void draw() {
     fill(255);
     text("Use the wasd keys to move. Press the 'esc' key to quit.", 50, 50);
     text("Move the mouse to aim. Left Click to shoot. Press 'm' to pause and resume.", 50,70);
-    text("Press 'r' to reload", 50,90);
+    text("Press 'r' to reload. You may only reload when you have used up all your bullets", 50,90);
 
     fill(0);
-    rect(50, 100, 200, 130);
+    rect(50, 140, 200, 130);
     fill(255);
-    rect(70, 120, 160, 90);
+    rect(70, 160, 160, 90);
     fill(0);
     textSize(32);
-    text("SCALE: ", 100, 150);
-    text(scale, 100, 200);
+    text("SCALE: ", 100, 190);
+    text(scale, 100, 240);
     textSize(20); fill(255);
-    text("Press 'i' to zoom in and 'o' to zoom out.", 50, 250);
-
+    text("Press 'i' to zoom in and 'o' to zoom out.", 50, 290);
+    
+    //health
+    resetColors();
+    fill(color(255,0,0));
+    text("Your HEALTH is " + neo.health/10, 50, 350);
+    for (int h = 0; h <= neo.health; h+=10){
+      rect(h*2+50,370,20,50,5,5,5,5);
+    }
+    //bullets
+    fill(color(250,208,56));
+    text("You have "+neo.gun.inMag + " bullets in your gun clip",50,500);
+    stroke(#E5BF3F); strokeWeight(3);
+    line(50,545,20*neo.gun.magCapacity+50,545);
+    for (int b = 0; b < neo.gun.inMag; b++){
+      rect(b*20 + 50,520,20,50); 
+    }
+    resetColors();
+    //gun facts
+    
+    
     if (mousePressed && sqrt(sq(mouseX - width/2)+sq(mouseY-height*2/3)) <= 90) {
       menu = false;
     }
@@ -283,11 +304,11 @@ void keyReleased() {
     break;
   case ' ':
     framerate = 60;
-    bSpeed = 30;
+    bSpeed = 35;
     neo.speed= 7;
     break;
   case 'r':
-    reloading = true;
+    if (neo.gun.inMag == 0){reloading = true;}
     break;
   }
 }

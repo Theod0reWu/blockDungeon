@@ -1,7 +1,7 @@
-float bSpeed = 30;
+float bSpeed = 35;
 class Gun{
   float x,y;
-  float damage;
+  int damage;
   PShape gunny;
   PVector velocity;
   Bullet bType;
@@ -19,7 +19,7 @@ class Gun{
   int reloadTimer = 0;
   final int magCapacity = 7;
   int inMag = 7;
-  Gun(float x, float y, float d, PVector v, float fr, boolean good){
+  Gun(float x, float y, int d, PVector v, float fr, boolean good){
     this.x = x; this.y = y; //v.x+=random(.4)-.2;v.y+=random(.4)-.2;
     damage = d; velocity = v; angle = 0;
     fireRate = fr;
@@ -74,9 +74,7 @@ class Gun{
     if (angle > HALF_PI || angle < -HALF_PI){
       bv = new PVector(cos(-angle+randFactor)*speed, sin(-angle+randFactor)*speed);
     }
-    int d = 1;
-    if (good == true) {d = 5;}
-    Bullet b = new Bullet(x+gunFactorX,y-gunFactorY,bv,good, d);
+    Bullet b = new Bullet(x+gunFactorX,y-gunFactorY,bv,good, damage);
     //println(angle);
     bullets.add(b);
     //println("o: "+b.x+":"+ b.y);
@@ -96,6 +94,9 @@ class Gun{
     ++reloadTimer;
   }
 }
-enum GunTypes{
-  
+class machineGun extends Gun{
+  machineGun(float x, float y, int d, PVector v, float fr, boolean good){
+    super(x,y,d,v,fr,good);
+    
+  }
 }

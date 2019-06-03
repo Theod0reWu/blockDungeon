@@ -1,6 +1,6 @@
 String[][] map;
 int floors = 6;
-int rooms = 4;//acutally just the room lines
+int rooms = 4;//acutally just the room lines should be even number
 int borderLength = 6000;
 int wallWidth = 100;
 color wallColor = color(100);
@@ -9,7 +9,7 @@ void generateTerrain(){
   map = new String[100][100];
   //border
   borderLength = 6000;
-  int doorway = 500;
+  int doorway = 300;
   
   int tw = borderLength+2*wallWidth; //total width
   //outer border
@@ -20,17 +20,19 @@ void generateTerrain(){
   // basic rooms
   int x = 0;
   for (float f = borderLength/floors; f <= borderLength - 500; f+=borderLength/floors, x++){
-    if (x%2 == 0){walls.add(new Wall(0,f, tw-500, wallWidth, wallColor));}
-    else {walls.add(new Wall(500,f, tw-500, wallWidth, wallColor));}
+    if (x%2 == 0){walls.add(new Wall(0,f, tw-doorway, wallWidth, wallColor));}
+    else {walls.add(new Wall(doorway,f, tw-doorway, wallWidth, wallColor));}
   }
   //starting room
-  for (float f = 0; f <= borderLength - 500; f+=borderLength/floors){
+  x = 0;
+  for (float f = 0; f <= borderLength - 500; f+=borderLength/floors,x++){
     int up = 0;
-    if (f%2==0){up = 1;}
+    if (x%2==0){up = 1;}
     for (int r = borderLength/(rooms+1); r < borderLength; r+=borderLength/(rooms+1), up++){
-      int d =250+wallWidth;
+      int d =300+wallWidth;
       if (up%2==1){d=0;}
-      walls.add(new Wall(r,f+d,wallWidth,borderLength/floors - 250, wallColor)); 
+      walls.add(new Wall(r,f+d,wallWidth,borderLength/floors - 300, wallColor)); 
+      
     }
   }
 }

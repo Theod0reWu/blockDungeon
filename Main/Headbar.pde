@@ -15,7 +15,17 @@ void displayHeadbar(){
   for (int b = 0; b < neo.gun.inMag; b++){
     rect(b*20 + 250,0,20,50); 
   }
+  
+  stroke(0); float len = 20 * scale;
+  line(mouseX+len,mouseY,mouseX-len,mouseY);
+  line(mouseX, mouseY+len, mouseX, mouseY-len);
   //rect(0,0,neo.health*5, 50);
   popMatrix();
   stroke(0); strokeWeight(1);
+}
+
+void crossSection(){
+ resetColors();
+ strokeWeight(3);
+ 
 }
