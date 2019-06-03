@@ -179,6 +179,7 @@ void draw() {
       }
       for (Enemy e : enemies) {
         if (b.isTouching(e) && b.good) {
+          if (b.isTouchingHead(e)){e.health-=b.damage;}
           e.health -= b.damage;
           hit.jump(0);
           dead = true; 

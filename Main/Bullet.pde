@@ -59,7 +59,29 @@ class Bullet implements Displayable, Moveable, Collideable {
   float getY() {
     return y + w/2*sin(angle);
   }
-  boolean isTouching(Collideable other) { //slight breakage at shooting the corners
+  boolean isTouchingHead(Collideable other){//assuming head is w x w 
+    float d = sqrt(sq(h)+sq(w));
+    if (getY() >= other.getY() && getY() <= other.getY() + other.getW()) {
+      if (getX() < other.getX()) {
+        //println("1");
+        d = ptl(getX(), getY(), 1, 0, -other.getX());
+      } else if (getX() > other.getX() + other.getW()) { 
+        d = ptl(getX(), getY(), 1, 0, -other.getX()-other.getW());
+      } else { 
+        d= 0;
+      }
+    } else if (getX() >= other.getX() && getX() <= other.getX() + other.getW()) {
+      if (getY() < other.getY()) {
+        //println("3");
+        d = ptl(getX(), getY(), 0, 1, -other.getY());
+      } else { 
+        d = ptl(getX(), getY(), 0, 1, -other.getY()-other.getW());
+      }
+    }
+    //println(d);
+    return d < sqrt(sq(h)+sq(w));
+  }
+  boolean isTouching(Collideable other) { //bullet hits people and walls
     float d = sqrt(sq(h)+sq(w));
     if (getY() >= other.getY() && getY() <= other.getY() + other.getH()) {
       if (getX() < other.getX()) {

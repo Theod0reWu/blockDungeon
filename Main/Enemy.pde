@@ -71,7 +71,7 @@ class Enemy extends Person implements Collideable{
     
     gun = new Gun(x+35, y+90, new PVector(0,0), 50, false);
     
-    health = (int)random(3)*10 + 20;
+    health = (int)random(7)*10 + 20;
     
     onScreenX = x;
     onScreenY = y;
