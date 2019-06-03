@@ -36,6 +36,7 @@ class Bullet implements Displayable, Moveable, Collideable {
     bull.setFill(c);
   }
   void move() {
+    velocity.setMag(bSpeed);
     x+=velocity.x;
     y+=velocity.y;
     //bull.translate(velocity.x, velocity.y);

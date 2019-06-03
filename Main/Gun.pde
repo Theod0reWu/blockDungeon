@@ -1,3 +1,4 @@
+float bSpeed = 30;
 class Gun{
   float x,y;
   float damage;
@@ -67,7 +68,7 @@ class Gun{
       cartAngle = angle + HALF_PI;
     }
     //println(degrees(a));
-    float speed = 28; // cannot be higher than wall thickness
+    float speed = bSpeed; // cannot be higher than wall thickness
     float randFactor = random(.1)-.05;
     PVector bv = new PVector(cos(angle+randFactor)*speed, sin(angle+randFactor)*speed);
     if (angle > HALF_PI || angle < -HALF_PI){

@@ -1,10 +1,10 @@
 void displayHeadbar(){
   fill(0);
-  //ellipse(ax,ay,10,10);
-  fill(color(255,0,0));
   pushMatrix();
   translate(-ax,-ay);
   rescale(1/scale);
+  
+  fill(color(255,0,0));
   for (int h = 0; h <= neo.health; h+=10){
     rect(h*2,0,20,50,5,5,5,5);
   }

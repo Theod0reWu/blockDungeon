@@ -19,7 +19,7 @@ class Enemy extends Person implements Collideable{
   boolean emove[];
   int speed = 6;
   int mode = 0;
-  // *****mode 1******|*****mode 2******|
+  // *****mode 0******|*****mode 1******|
   // --move randomly--|--run at player__|
   
   Enemy(float x, float y){
@@ -84,7 +84,17 @@ class Enemy extends Person implements Collideable{
     mouseAngle = atan2(neo.y-onScreenY,neo.x-onScreenX);
     if ((mouseAngle <= HALF_PI && mouseAngle >= -HALF_PI) &&  !facing){flip = true; facing = true;}
     else if ((mouseAngle > HALF_PI || mouseAngle < -HALF_PI) &&  facing){flip = true; facing = false;}
+    //|*****mode 0******|*****mode 1******|
+    //|--move randomly--|--run at player__|
     float ox = x; float oy = y;
+    switch(mode){
+     case 0:
+     
+     break;
+     case 1:
+     
+     break; 
+    }
     if (ox != x || oy != y){walk();} 
   }
   void move(boolean[] emove){

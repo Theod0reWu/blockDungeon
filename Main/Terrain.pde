@@ -1,8 +1,10 @@
 String[][] map;
-int floors = 3;
+int floors = 6;
+int rooms = 4;
 int borderLength = 6000;
 int wallWidth = 100;
 void generateTerrain(){
+  resetColors();
   map = new String[100][100];
   //border
   borderLength = 6000;
@@ -21,9 +23,15 @@ void generateTerrain(){
     if (x%2 == 0){walls.add(new Wall(0,f, tw-500, wallWidth, wallColor));}
     else {walls.add(new Wall(500,f, tw-500, wallWidth, wallColor));}
   }
-  //walls.add(new Wall(0,
+  //starting room
+  for (float f = 0; f <= floors; f++){
+    int up = 0;
+    if (f%2==0){up = 1;}
+    
+  }
 }
 void placeBackground(){ //colorful tile background custom background
+  resetColors();
   fill(200);
   rect(0,0,borderLength+2*wallWidth, borderLength+2*wallWidth);
 }

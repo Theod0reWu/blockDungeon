@@ -81,7 +81,7 @@ void setup() {
 }
 void draw() {
   if (menu) {
-    background(150, .1);
+    background(150, .0001);
     textSize(32);
 
     fill(0);
@@ -260,7 +260,8 @@ void keyPressed() {
     menu=!menu;
     break;
   case ' ':
-    framerate = 20;
+    framerate = 10;
+    bSpeed = 10;
     neo.speed=21;
     break;
   }
@@ -282,6 +283,7 @@ void keyReleased() {
     break;
   case ' ':
     framerate = 60;
+    bSpeed = 30;
     neo.speed= 7;
     break;
   case 'r':
@@ -300,4 +302,8 @@ void rescale(float scale) {
   translate(cx, cy);
   scale(scale);
   translate(-cx, -cy);
+}
+void resetColors(){
+  stroke(0); strokeWeight(1);
+  fill(0);
 }
