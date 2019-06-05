@@ -18,5 +18,7 @@
 <br> 5/31/19: got started on the map and floors. made the enemies graphics and positioning, made the bullets dealing damage feature </br>
 <br> 6/1/19: made offset moving to make it smoother and more realistic. added reloading after firing a certain number of bullets. added getting hurt noises</br>
 <br> 6/2/19: bullets and headbars. headbars retain size and position when zooming in and out. Made rooms. number of rooms&floors can be modified</br>
+<br> 6/3/19: headshots deal double damage. automatic rifle added. more info present on pause/start page. </br>
+<br> 6/4/19: made the "Room" class. Room class makes that obstacles that "hopefully" do not block the entrances </br>
 # Sources
 -sounds from http://soundbible.com/tags-gun.html
