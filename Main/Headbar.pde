@@ -19,6 +19,8 @@ void displayHeadbar(){
   stroke(0); float len = 20 * scale;
   line(mouseX+len,mouseY,mouseX-len,mouseY);
   line(mouseX, mouseY+len, mouseX, mouseY-len);
+  fill(0);
+  if (frameCount - headshot <= 10){text("HEADSHOT!!",mouseX+20, mouseY-20);}
   //rect(0,0,neo.health*5, 50);
   popMatrix();
   stroke(0); strokeWeight(1);

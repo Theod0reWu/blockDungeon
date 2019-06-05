@@ -1,6 +1,4 @@
 String[][] map;
-int floors = 6;
-int rooms = 4;//acutally just the room lines should be even number
 int borderLength = 6000;
 int wallWidth = 100;
 color wallColor = color(100);
@@ -22,6 +20,9 @@ void generateTerrain(){
   for (float f = borderLength/floors; f <= borderLength - 500; f+=borderLength/floors, x++){
     if (x%2 == 0){walls.add(new Wall(0,f, tw-doorway, wallWidth, wallColor));}
     else {walls.add(new Wall(doorway,f, tw-doorway, wallWidth, wallColor));}
+    
+    if (f+borderLength/floors <= borderLength-500){areas.add( new Room(wallWidth,f+wallWidth, borderLength/(rooms+1)-wallWidth,borderLength/floors-wallWidth));}
+    else{areas.add(new Room(wallWidth,f+wallWidth, borderLength/(rooms+1)-wallWidth,borderLength - f));}
   }
   //starting room
   x = 0;
@@ -32,7 +33,10 @@ void generateTerrain(){
       int d =300+wallWidth;
       if (up%2==1){d=0;}
       walls.add(new Wall(r,f+d,wallWidth,borderLength/floors - 300, wallColor)); 
-      
+      float h = borderLength-f; float w = borderLength-r;
+      if (f+borderLength/floors <= borderLength-500){h=borderLength/floors-wallWidth;}
+      if (r + borderLength/(rooms+1) < borderLength){w = borderLength/(rooms+1)-wallWidth;}
+      areas.add(new Room (r+wallWidth,f+wallWidth,w,h));
     }
   }
 }

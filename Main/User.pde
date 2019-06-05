@@ -54,7 +54,7 @@ class User extends Person{
     strokeWeight(1);
     
     gun = new Gun(x+35, y+90, new PVector(0,0), 28, true);
-    //gun = new MachineGun(x+35, y+90, 20, new PVector(0,0), 10, true);
+    //gun = new MachineGun(x+35, y+90, new PVector(0,0), 10, true);
     
     health = 100;
   }
@@ -80,12 +80,18 @@ class User extends Person{
       for (Wall w : walls){
         if (willTouch(w,0,-speed)){go = false; break;}
       }
+      for (Enemy e :enemies){
+       if (willTouch(e,0,-speed)){go=false; break;} 
+      }
       if (go) {neo.y-=speed;}
     }
     if (keys[1]){
       boolean go = true;
       for (Wall w : walls){
         if (willTouch(w,-speed,0)){go = false; break;}
+      }
+      for (Enemy e :enemies){
+       if (willTouch(e,-speed,0)){go=false; break;} 
       }
       if (go) {neo.x-=speed;}
     }
@@ -94,12 +100,18 @@ class User extends Person{
       for (Wall w : walls){
         if (willTouch(w,0,speed)){go = false; break;}
       }
+      for (Enemy e :enemies){
+       if (willTouch(e,0,speed)){go=false; break;} 
+      }
       if (go) {neo.y+=speed;}
     }
     if (keys[3]){
       boolean go = true;
       for (Wall w : walls){
         if (willTouch(w,speed,0)){go = false; break;}
+      }
+      for (Enemy e :enemies){
+       if (willTouch(e,speed,0)){go=false; break;} 
       }
       if (go) {neo.x+=speed;}
     }

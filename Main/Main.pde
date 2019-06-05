@@ -37,6 +37,7 @@ boolean menu = true;
 int rmenu;
 
 boolean reloading = false;
+int headshot;
 void setup() {
   shellDropping = new SoundFile(this, "ShellFalling.wav");
   shot = new SoundFile(this, "GunShot.wav");
@@ -50,7 +51,7 @@ void setup() {
   //frameRate(1000);
   size(displayWidth, displayHeight);
   //size(2000,1000);
-  neo = new User(200, 200);
+  neo = new User(wallWidth + 20, wallWidth+20);
   persons = new ArrayList<Person>();
   //persons.add(neo); //user will now be seperately operated on
   enemies = new ArrayList<Enemy>();
@@ -83,7 +84,7 @@ void setup() {
 }
 void draw() {
   if (menu) {
-    background(150, .0001);
+    background(150, .1);
     textSize(32);
 
     fill(0);
@@ -92,13 +93,22 @@ void draw() {
     text("PLAY", width/2-38, height*2/3 + 10);
     text("Click the button to play", width/2 - 160, height*2/3 - 60);
 
-    textSize(20);
-    fill(0);
+    textSize(26);
+    fill(color(0,255,0));
     text("Directions:", 50, 30);
+    textSize(20);
     fill(255);
     text("Use the wasd keys to move. Press the 'esc' key to quit.", 50, 50);
     text("Move the mouse to aim. Left Click to shoot. Press 'm' to pause and resume.", 50,70);
     text("Press 'r' to reload. You may only reload when you have used up all your bullets", 50,90);
+    
+    int xd = 1000;
+    fill(0);
+    textSize(32);
+    text("Tips:",xd,30);
+    textSize(20);
+    text("-The arm points in the direction of the mouse, NOT THE GUN!",xd, 60);
+    text("-Headshots deal double damage!", xd, 80);
 
     fill(0);
     rect(50, 140, 200, 130);
@@ -179,7 +189,7 @@ void draw() {
       }
       for (Enemy e : enemies) {
         if (b.isTouching(e) && b.good) {
-          if (b.isTouchingHead(e)){e.health-=b.damage;}
+          if (b.isTouchingHead(e)){e.health-=b.damage;headshot = frameCount;}
           e.health -= b.damage;
           hit.jump(0);
           dead = true; 
@@ -188,6 +198,7 @@ void draw() {
         }
       }
       if (b.isTouching(neo) && !b.good) {
+        if (b.isTouchingHead(neo)){neo.health-=b.damage;}
         neo.health -= b.damage;
         hit.jump(0);
         dead = true;
@@ -228,7 +239,10 @@ void draw() {
         break;
       }
     }
-    
+    //areas.get(0).dis();
+    /*for (Room r: areas){
+      r.dis();
+    }*/
     displayHeadbar();
   }
 }

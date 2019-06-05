@@ -70,8 +70,9 @@ class Enemy extends Person implements Collideable{
     strokeWeight(1);
     
     gun = new Gun(x+35, y+90, new PVector(0,0), 50, false);
+    if ((int)random(5) == 1){gun = new MachineGun(x+35, y+90, new PVector(0,0), 10, true);}
     
-    health = (int)random(7)*10 + 20;
+    health = (int)random(4)*10 + 20;
     
     onScreenX = x;
     onScreenY = y;
@@ -103,12 +104,18 @@ class Enemy extends Person implements Collideable{
       for (Wall w : walls){
         if (willTouch(w,0,-speed)){go = false; break;}
       }
+      for (Enemy e :enemies){
+       if (e != this && willTouch(e,0,-speed)){go=false; break;} 
+      }
       if (go) {neo.y-=speed;}
     }
     if (emove[1]){
       boolean go = true;
       for (Wall w : walls){
         if (willTouch(w,-speed,0)){go = false; break;}
+      }
+      for (Enemy e :enemies){
+       if (e != this && willTouch(e,-speed,0)){go=false; break;} 
       }
       if (go) {neo.x-=speed;}
     }
@@ -117,12 +124,18 @@ class Enemy extends Person implements Collideable{
       for (Wall w : walls){
         if (willTouch(w,0,speed)){go = false; break;}
       }
+      for (Enemy e :enemies){
+       if (e != this && willTouch(e,0,speed)){go=false; break;} 
+      }
       if (go) {neo.y+=speed;}
     }
     if (emove[3]){
       boolean go = true;
       for (Wall w : walls){
         if (willTouch(w,speed,0)){go = false; break;}
+      }
+      for (Enemy e :enemies){
+       if (e != this && willTouch(e,speed,0)){go=false; break;} 
       }
       if (go) {neo.x+=speed;}
     }
