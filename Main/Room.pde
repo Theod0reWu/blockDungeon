@@ -1,6 +1,7 @@
 class Room{
   float x,y;
   float w,h;
+  int id;
   String[][] obstable;
   Room(float x, float y, float w, float h){
    this.x = x; this.y = y; this.w = w; this.h = h;
@@ -8,11 +9,12 @@ class Room{
    
    
    //add some of those wall obstacles
-   int obstacles = (int)random(5) + 5; int tries = 0;
+   //println(w+":"+h);
+   int obstacles = (int)random(w*h/700000) + (int)(w*h/700000); int tries = 0;
    while (obstacles > 0 && tries < 1000){
      float rx = random(w) + x; float ry = random(h)+y;
      float rw = random(265)+70; float rh = random(265)+200;
-     if (isValid(rx, ry, rw, rh)){walls.add(new Wall(rx, ry, rw, rh, wallColor)); obstacles--;} 
+     if (isValid(rx, ry, rw, rh)){walls.add(new Wall(rx, ry, rw, rh, color(random(100) + 50))); obstacles--;} 
      tries++;
    }
   }
@@ -31,11 +33,10 @@ class Room{
     if (y > wall.getY() + wall.getH() || wall.getY() > y + h){return false;}
     return true;
   }
+  void spawnEnemies(){
+    
+  }
 }
 int floors = 3;
-int rooms = 2;//acutally just the room lines should be even number
+int rooms = 4;//acutally just the room lines should be even number
 boolean[] visited = new boolean[(floors+1)*(rooms+1)-1];
-void spawnEnemies(){
-  
-  
-}

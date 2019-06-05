@@ -20,9 +20,9 @@ void generateTerrain(){
   for (float f = borderLength/floors; f <= borderLength - 500; f+=borderLength/floors, x++){
     if (x%2 == 0){walls.add(new Wall(0,f, tw-doorway, wallWidth, wallColor));}
     else {walls.add(new Wall(doorway,f, tw-doorway, wallWidth, wallColor));}
-    
-    if (f+borderLength/floors <= borderLength-500){areas.add( new Room(wallWidth,f+wallWidth, borderLength/(rooms+1)-wallWidth,borderLength/floors-wallWidth));}
-    else{areas.add(new Room(wallWidth,f+wallWidth, borderLength/(rooms+1)-wallWidth,borderLength - f));}
+    float w = borderLength - f;
+    if (f+borderLength/floors <= borderLength-500){w=borderLength/floors-wallWidth;}
+    areas.add(new Room(wallWidth,f+wallWidth, borderLength/(rooms+1)-wallWidth,w));
   }
   //starting room
   x = 0;
