@@ -98,6 +98,11 @@ class Enemy extends Person implements Collideable{
     }
     if (ox != x || oy != y){walk();} 
   }
+  boolean[] moveRandom(){
+    boolean[] emove = new boolean[4];
+    
+    return emove;
+  }
   void move(boolean[] emove){
    if (emove[0]){
       boolean go = true;
