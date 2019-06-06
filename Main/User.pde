@@ -9,6 +9,7 @@ class User extends Person{
   PShape arm;
   Boolean facing, flip; //true = right, false = left
   Gun gun;
+  Gun otherGun;
   float onScreenX, onScreenY;
   
   PVector v = new PVector(0,0);
@@ -48,15 +49,16 @@ class User extends Person{
     arm.vertex(64, 10);
     arm.vertex(0,10);
     arm.endShape(CLOSE);
+    arm.setFill(255);
     //graphics.addChild(arm); I can't add it in correctly. arm is now seperately controlled
     
     onScreenX = width/2; onScreenY = height/2;
     strokeWeight(1);
     
     gun = new Gun(x+35, y+90, new PVector(0,0), 28, true);
-    //gun = new MachineGun(x+35, y+90, new PVector(0,0), 10, true);
+    otherGun = new MachineGun(x+35, y+90, new PVector(0,0), 10, true);
     
-    health = 100;
+    health = 120;
   }
   void moveDis(){
     pushMatrix();
@@ -147,13 +149,17 @@ class User extends Person{
       graphics.translate(70,0);
       graphics.scale(-1,1);
       flip=false;
+      otherGun.getShape().rotate(-otherGun.angle);
+      otherGun.getShape().scale(1,-1);
+      otherGun.getShape().rotate(otherGun.angle);
+      
       gun.getShape().rotate(-gun.angle);
       gun.getShape().scale(1,-1);
       gun.getShape().rotate(gun.angle);
     }
     if (armAngle != mouseAngle){
       arm.rotate(mouseAngle - armAngle);
-      gun.rotateShape(mouseAngle);
+      gun.rotateShape(mouseAngle); otherGun.rotateShape(mouseAngle);
       armAngle = mouseAngle;
     }
     shape(graphics,x,y);
@@ -161,6 +167,11 @@ class User extends Person{
     shape(gun.getShape(),x+35,y+90);
     //line(x+35,y+90,mouseX,mouseY); //looks like laser pointer
   };
+  void swapGun(){
+    Gun temp = gun;
+    gun = otherGun;
+    otherGun = temp;
+  }
   String toString(){
     return "("+x+","+y+") ";
   }
@@ -168,7 +179,7 @@ class User extends Person{
   boolean first = false;
   void shoot(){//println(frameCount - rmenu);
     if (frameCount - lastShot > gun.fireRate && mousePressed && frameCount - rmenu > 5 && mouseButton == LEFT && !reloading){
-      if (gun.inMag != 0){
+      if (gun.inMag != 0 && !reloading){
         if (shellDropping.isPlaying()){shellDropping.pause();}
         shot.jump(0.1);
         first = true;

@@ -6,6 +6,7 @@ class Gun{
   PVector velocity;
   Bullet bType;
   float angle;
+  final float actualFr;
   float fireRate; //inverse higher num, lower actual rate
   
   float gunFactorX;
@@ -22,10 +23,12 @@ class Gun{
   int inMag;
   
   float rand = .1;
+  boolean relo = false;
   Gun(float x, float y, PVector v, float fr, boolean good){
     this.x = x; this.y = y; //v.x+=random(.4)-.2;v.y+=random(.4)-.2;
     damage = 10 ; velocity = v; angle = 0;
     fireRate = fr;
+    actualFr = fr;
     this.good = good;
     inMag = magCapacity;
     
@@ -60,7 +63,7 @@ class Gun{
   }
   
   void shoot(float x, float y){
-    if (inMag == 0){dryGun.jump(0);return;}
+    if (inMag == 0 || relo){dryGun.jump(0);return;}
     inMag--;
     float a = angle;
     float cartAngle = angle - HALF_PI;
@@ -88,12 +91,13 @@ class Gun{
     cartridges.add(c);
   }
   void reload(){ //println(reloadTimer);
-    if (reloadTimer == 1){clip.jump(0);}
+    if (reloadTimer == 1){clip.jump(0);relo = true;}
     if (reloadTimer == reloadTime){
       reloadTimer = 0;
       reload.jump(0); 
       inMag = magCapacity;
-      reloading = false;
+      if (good){reloading = false;}
+      relo = false;
     }
     ++reloadTimer;
   }
@@ -179,7 +183,7 @@ class MachineGun extends Gun{
     
     gunny = bull;
     
-    magCapacity = 24;
+    magCapacity = 15;
     inMag = 0;
     reloadTime = 90;
     rand = .2;
