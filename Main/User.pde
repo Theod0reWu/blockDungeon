@@ -1,3 +1,4 @@
+  int mags = 1;
 class User extends Person{
   float ltLeg = 0; // rotates >= 0
   float rtLeg = 0; // rotates <= 0
@@ -15,6 +16,7 @@ class User extends Person{
   PVector v = new PVector(0,0);
   
   int health; int speed = 8;
+  
   User(float x , float y){
     super(x,y);
     ltLeg = PI/6; // PI/2 is max, 0 is min

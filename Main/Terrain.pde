@@ -29,7 +29,7 @@ void generateTerrain(){
   for (float f = 0; f <= borderLength - 500; f+=borderLength/floors,x++){
     int up = 0;
     if (x%2==0){up = 1;}
-    for (int r = borderLength/(rooms+1); r < borderLength; r+=borderLength/(rooms+1), up++){
+    for (int r = borderLength/(rooms+1); r < borderLength - 140; r+=borderLength/(rooms+1), up++){
       int d =300+wallWidth;
       if (up%2==1){d=0;}
       walls.add(new Wall(r,f+d,wallWidth,borderLength/floors - 300, wallColor)); 

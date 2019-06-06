@@ -63,7 +63,8 @@ class Gun{
   }
   
   void shoot(float x, float y){
-    if (inMag == 0 || relo){dryGun.jump(0);return;}
+    if (inMag == 0){dryGun.jump(0);return;}
+    if (!good && relo){dryGun.jump(0);return;}
     inMag--;
     float a = angle;
     float cartAngle = angle - HALF_PI;
@@ -189,5 +190,12 @@ class MachineGun extends Gun{
     rand = .2;
     damage = 10;
     fill(255);
+  }
+  void reload(){
+    if (mags > 0 && good){
+      if (reloadTime == reloadTimer){mags--;}
+      super.reload();
+    }else if (!good){super.reload();}
+    else {reloading = false;relo = false;neo.otherGun.relo=false;}
   }
 }

@@ -27,6 +27,11 @@ void displayHeadbar(){
   if ( s < 0) {s = 0;}
   rect(20*neo.gun.magCapacity+280 + 50, 5, s, 50);
   
+  fill(80); stroke(0);
+  for (int m = 0; m < mags;m++){
+   rect(m*20 +  20*neo.gun.magCapacity+280 + 50 + 250, 5, 20,50);
+  }
+  
   stroke(0); float len = 20 * scale;
   line(mouseX+len,mouseY,mouseX-len,mouseY);
   line(mouseX, mouseY+len, mouseX, mouseY-len);
