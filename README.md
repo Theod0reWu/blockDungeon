@@ -1,6 +1,23 @@
 # [[[Block Dungeon]]]
 # Directions
-  Once downloaded you can run this project on processing. <b>WARNING!!!</b> you need to have the sound library installed for this project to run. This can be done by clicking "sketch", then select "Add Library..." from the "Import Library..." submenu within the Sketch menu. search "sound" and add it.
+  Once downloaded you can run this project on processing. <b>WARNING!!!</b> you need to have the sound library installed for this project to run. This can be done by clicking "sketch", then select "Add Library..." from the "Import Library..." submenu within the Sketch menu. search "sound" and add it.<br></br>
+  After you run the program you will see a menu, where if you click the button in the bottom center the game will start.
+# How To Play
+  Use the <b>WASD</b> keys to move . <br></br>
+  Aim using the crosshair that follows the mouse. (+). <b>Left click</b> to shoot. 
+  You can pause at any time by clicking 'm' for the menu and 'm' again to resume (or using the mouse to hit 'play')
+  You can zoom in or out by using 'i' for in and 'o' for out. You can also use the <b>Mouse Wheel</b> to zoom in/out.
+  
+  You start off holding the handgun (7 bullet capacity). After shooting seven times you can right-click to reload or hit the 'r' key. You can switch to the Auto-Rifle  by pressing 'e' or the center mouse button (and by pressing it again you can switch back). <br></br>
+<b>Guns:</b>
+The auto-rifle requires a magazine to reload. You can aquire magazines by killing enemies (who can drop them randomly). It has 12 rounds per magazine. The handgun can be reloaded infinitely, it has 7 rounds.
+
+  The slow motion effect can be activated or deactivated by pressing the <b>|spacebar|</b>. You will see the neon blue bar drain as ou use the slow motion effect. This effects slows bullets to the same speed as the user can move. firerate also increases. enemis also slow down.
+  
+  The Health bar is displayed on the top left (along with bullets, slow motion bar and magazines). You begin with 12 health. every 4 seconds you regain one health up to a max of ten. body shots take one damage and headshots take two damage.
+  
+  Your goal is to kill all the enemies and reach the last room. Enemeis spawn as you enter the room. If you die you will just restart from the begining. If you reach the end you respawn in a harder floor with more rooms with two more magazines. 
+  **holding down 'w', 's' and then right clicking activates "god mode", only for quitters though ;)**
 # Developement Log 
 <br> 5/17/19: started the project, made the repo and laid the basic foundation for the game</br>
 <br> 5/18/19: started the person class which will be used for the enemies and player. started wall class and terrain generation</br>
