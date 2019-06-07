@@ -12,7 +12,7 @@ class Room implements Collideable{
    //add some of those wall obstacles
    //println(w+":"+h);
    int obstacles = (int)random(w*h/700000); int tries = 0;
-   if ((int)(w*h/700000) >= 1){obstacles += (int)(w*h/700000);}
+   if ((int)(w*h/900000) >= 1){obstacles += (int)(w*h/900000);}
    else {obstacles += 1;}
    while (obstacles > 0 && tries < 1000){
      float rx = random(w) + x; float ry = random(h)+y;
@@ -39,14 +39,16 @@ class Room implements Collideable{
     if (y > wall.getY() + wall.getH() || wall.getY() > y + h){return false;}
     return true;
   }
-  void spawnEnemies(){
-    int rNum = (int)random(w*h/800000);
-    if ((int)(w*h/800000) >= 2){rNum += (int)(w*h/800000);}
-    else {rNum += 2;}
+  void spawnEnemies(){ //println(w*h);
+    int rNum = (int)random(w*h/1800000);
+    if (w*h == 0){}
+    else if ((int)(w*h/1800000) >= 2){rNum += (int)(w*h/1800000);}
+    else {rNum += 2;rNum+=(int)random(1);}
     int tries = 0;
-    while (rNum > 0 && tries < 1000 && !spawnt){
+    while (rNum > 0 && tries < 10000 && !spawnt){
       float rx = random(w) + x; float ry = random(h)+y;
       if (isValid(rx,ry,70,200)){enemies.add(new Enemy(rx,ry)); rNum--;}
+      tries++;
     }
     spawnt = true;
   }
@@ -58,6 +60,6 @@ class Room implements Collideable{
     return true;
   }
 }
-int floors = 3;
-int rooms = 4;//acutally just the room lines should be even number
+int floors = 1;
+int rooms = 1;//acutally just the room lines should be even number
 boolean[] visited = new boolean[(floors+1)*(rooms+1)-1];

@@ -206,12 +206,12 @@ void draw() {
     matrixDodge = false; mags = 1;
     setup();
   }
-  else if (areas.size() == 0 && enemies.size() == 0){
-    floors++;
-    rooms++;
-    borderLength+=500;
+  else if (areas.size() == 0 && enemies.size() == 0 || keyPressed && key == 'l'){
+    floors+= (int)random(2);
+    rooms += (int) random(2);
+    borderLength+=800*((int)random(2)+1);
     matrixDodge = false;
-    mags+=2;
+    mags+=1;
     setup();
   }
   else if (menu) {
@@ -337,7 +337,7 @@ void draw() {
       healthRegen = frameCount;
     }
     
-    if (mousePressed && mouseButton == RIGHT){reloading = true;}
+    if (mousePressed && mouseButton == RIGHT && !godMode){reloading = true;}
     
     frameRate(framerate);
     //println(shot.isPlaying());
