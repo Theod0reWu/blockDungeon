@@ -40,9 +40,9 @@ class Room implements Collideable{
     return true;
   }
   void spawnEnemies(){ //println(w*h);
-    int rNum = (int)random(w*h/1800000);
+    int rNum = (int)random(w*h/900000);
     if (w*h == 0){}
-    else if ((int)(w*h/1800000) >= 2){rNum += (int)(w*h/1800000);}
+    else if ((int)(w*h/900000) >= 2){rNum += (int)(w*h/900000);}
     else {rNum += 2;rNum+=(int)random(1);}
     int tries = 0;
     while (rNum > 0 && tries < 10000 && !spawnt){

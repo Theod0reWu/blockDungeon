@@ -204,6 +204,7 @@ void draw() {
     retry = false;
     delay(2500);
     matrixDodge = false; mags = 1;
+    rooms = 1;floors = 1;borderLength = 1200;
     setup();
   }
   else if (areas.size() == 0 && enemies.size() == 0 || keyPressed && key == 'l'){
