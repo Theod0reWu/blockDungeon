@@ -1,6 +1,6 @@
 # [[[Block Dungeon]]]
 # Directions
-  Once downloaded you can run this project on processing. <b>WARNING!!!</b> you need to have the sound library installed for this project to run. This can be done by clicking "sketch", then select "Add Library..." from the "Import Library..." submenu within the Sketch menu. search "sound" and add it.<br></br>
+  Once downloaded you can run this project on processing. (https://processing.org/download/) <b>WARNING!!!</b> you need to have the sound library installed for this project to run. This can be done by clicking "sketch", then select "Add Library..." from the "Import Library..." submenu within the Sketch menu. search "sound" and add it.<br></br>
   After you run the program you will see a menu, where if you click the button in the bottom center the game will start.
 # How To Play
   Use the <b>WASD</b> keys to move . <br></br>
@@ -12,7 +12,7 @@
 <b>Guns:</b>
 The auto-rifle requires a magazine to reload. You can aquire magazines by killing enemies (who can drop them randomly). It has 12 rounds per magazine. The handgun can be reloaded infinitely, it has 7 rounds.
 
-  The slow motion effect can be activated or deactivated by pressing the <b>|spacebar|</b>. You will see the neon blue bar drain as ou use the slow motion effect. This effects slows bullets to the same speed as the user can move. firerate also increases. enemis also slow down.
+  The slow motion effect can be activated or deactivated by pressing the <b>|spacebar|</b>. You will see the neon blue bar drain as you use the slow motion effect. This effects slows bullets to the same speed as the user can move. firerate also increases. enemis also slow down.
   
   The Health bar is displayed on the top left (along with bullets, slow motion bar and magazines). You begin with 12 health. every 4 seconds you regain one health up to a max of ten. body shots take one damage and headshots take two damage.
   
